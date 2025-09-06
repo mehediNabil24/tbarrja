@@ -10,8 +10,8 @@ export default {
   ],
   theme: {
     extend: {
-      fontFamily: {
-        inter: ["var(--font-inter)"],
+     fontFamily: {
+        sans: ['"Termina Test"', 'sans-serif'],
       },
       colors: {
         "gray-light": "#f1f1f1",

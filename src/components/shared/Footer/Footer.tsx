@@ -1,214 +1,117 @@
-"use client";
-import logo from "@/assets/logo/logo.png";
-import { cn } from "@/lib/utils";
-import { Accordion, AccordionItem } from "@nextui-org/react";
-import Image from "next/image";
-import Link from "next/link";
-import { FaFacebookF } from "react-icons/fa6";
-import { IoLogoWhatsapp } from "react-icons/io5";
-import { MdMailOutline, MdOutlineCall } from "react-icons/md";
-import { PiBuildingOffice } from "react-icons/pi";
-import { RiHomeOfficeLine, RiLinkedinFill } from "react-icons/ri";
-import NavMenu from "../Navbar/NavMenu";
-import { usePathname } from "next/navigation";
+import { Facebook, Instagram, Twitter, Youtube, Linkedin, ArrowRight } from "lucide-react"
+import Image from "next/image"
+import logo from "@/assets/logo/Asset 3 1.png"
 
-const thirdRow = [
-  {
-    title: "About Us",
-    link: "/about",
-  },
-  {
-    title: "Blog",
-    link: "/blogs",
-  },
-  {
-    title: "Reviews",
-    link: "/reviews",
-  },
-  // {
-  //   title: "Certification",
-  //   link: "/certification",
-  // },
-  {
-    title: "Careers",
-    link: "/career",
-  },
-  {
-    title: "Financing",
-    link: "/finance",
-  },
-  {
-    title: "Service Area",
-    link: "/service-area",
-  },
-];
-const forthRow = [
-  {
-    title: (
-      <a
-        href="https://www.google.com/maps/search/?api=1&query=16555+South+Oak+Park+Ave,+Tinley+Park,+IL+60477"
-        target="_blank"
-      >
-        16555 South Oak Park Ave, Tinley Park, IL 60477
-      </a>
-    ),
-    icon: <PiBuildingOffice />,
-  },
-  {
-    title: "8200 Beckett Park Dr West Chester Township OH 45069",
-    icon: <RiHomeOfficeLine />,
-  },
-
-  {
-    title: <a href="tel:708-949-4553">708-949-4553</a>,
-    icon: <MdOutlineCall />,
-  },
-  {
-    title: <a href="mailto:info@arcroofs.com">info@arcroofs.com</a>,
-    icon: <MdMailOutline />,
-  },
-];
-const Footer = () => {
-  const pathname = usePathname();
+export default function Footer() {
   return (
-    <div className="bg-black py-20">
-      <div className="container">
-        <div className=" grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-5">
-          <div className="flex flex-col gap-6">
-            <div className="h-24 w-56 ">
-              <Image
-                src={logo}
-                className="object-contain"
-                height={400}
-                width={400}
-                alt="image"
-              />
-            </div>
-            <p className="text-gray-light text-base font-medium">
-              Business description goes here. It should be concise and
-              informative, providing an overview of the services offered.
-            </p>
-            <div className="flex items-center gap-4">
-              <div className="bg-[#36607b] p-2 rounded-md text-white">
-                <FaFacebookF size={18} />
-              </div>
-              <div className="bg-[#36607b] p-2 rounded-md text-white">
-                <RiLinkedinFill size={20} />
-              </div>
-              <div className="bg-[#36607b] p-2 rounded-md text-white">
-                <IoLogoWhatsapp size={20} />
-              </div>
-            </div>
-          </div>
-          <div>
-            <div className=" w-full text-base text-white">
-              <NavMenu className="flex-col mb-4" />
-              <div
-                className={cn("flex flex-col  gap-6  font-normal ps-3 mb-3")}
-              >
-                <Link href={"/gutters"}>
-                  <div
-                    className={cn(
-                      "cursor-pointer hover:text-primary transition duration-200",
-                      pathname === "/gutters" && "text-primary font-semibold"
-                    )}
-                  >
-                    Gutters
-                  </div>
-                </Link>
-                <Link href={"/window"}>
-                  <div
-                    className={cn(
-                      "cursor-pointer hover:text-primary transition duration-200",
-                      pathname === "/window" && "text-primary font-semibold"
-                    )}
-                  >
-                    Windows
-                  </div>
-                </Link>
-                <Link href={"/commercial"}>
-                  <div
-                    className={cn(
-                      "cursor-pointer hover:text-primary transition duration-200",
-                      pathname === "/commercial" && "text-primary font-semibold"
-                    )}
-                  >
-                    Commercial
-                  </div>
-                </Link>
-              </div>
-              <div className="ps-1  w-full max-w-44">
-                <Accordion isCompact className="">
-                  <AccordionItem
-                    key="1"
-                    aria-label="Other Service"
-                    title={<span className="text-white">Pricing</span>}
-                  >
-                    <div className=" ps-1">
-                      <Link href={"/pricing-cost-calculator/roofing"}>
-                        <div
-                          // className="cursor-pointer hover:text-primary hover:bg-slate-100 p-2 mb-2 rounded"
-                          className={cn(
-                            "cursor-pointer hover:text-primary hover:bg-slate-100 p-2 mb-2 rounded transition duration-200"
-                          )}
-                        >
-                          Roof Cost Calculator
-                        </div>
-                      </Link>
-                      <Link href={"/pricing-cost-calculator/siding"}>
-                        <div
-                          // className="cursor-pointer hover:text-primary hover:bg-slate-100 p-2 rounded"
-                          className={cn(
-                            "cursor-pointer hover:text-primary hover:bg-slate-100 p-2 mb-2 rounded transition duration-200"
-                          )}
-                        >
-                          Siding Cost Calculator
-                        </div>
-                      </Link>
-                      <Link href={"/pricing-cost-calculator/window"}>
-                        <div
-                          // className="cursor-pointer hover:text-primary hover:bg-slate-100 p-2 rounded"
-                          className={cn(
-                            "cursor-pointer hover:text-primary hover:bg-slate-100 p-2 mb-2 rounded transition duration-200"
-                          )}
-                        >
-                          Window Cost Calculator
-                        </div>
-                      </Link>
-                    </div>
-                  </AccordionItem>
-                </Accordion>
-              </div>
-            </div>
-          </div>
-          <div>
-            {thirdRow?.map((item, i) => (
-              <Link href={item?.link} key={i}>
-                <div className="cursor-pointer text-white hover:text-primary pb-5 rounded">
-                  {item?.title}
-                </div>
-              </Link>
-            ))}
-          </div>
-          <div className="text-white">
-            <h3 className="text-xl font-bold mb-6">
-              Get In Touch With us Today
-            </h3>
+    <footer className="relative bg-gray-900 px-6 py-16 lg:px-12">
+      <div className="mx-auto container">
+        <div className="grid gap-12 lg:grid-cols-4 lg:gap-16">
+          {/* Logo and Description */}
+          <div className="lg:col-span-1 space-y-6">
+            <Image
+              src={logo}
+              alt="THE TRADING HUB Logo"
+              className="h-12 w-auto"
+            />
 
-            {forthRow?.map((item, i) => (
-              <div
-                key={i}
-                className="cursor-pointer text-gray-light hover:text-primary p-3 rounded flex items-start gap-2"
-              >
-                <div>{item?.icon}</div>
-                <p className="w-full -mt-1"> {item?.title}</p>
+            <p className="text-gray-300 text-sm leading-relaxed">
+              Smarter, autonomous trading systems powered by HALO — our proprietary AI engine.
+            </p>
+
+            {/* Social Media Icons */}
+            <div className="flex gap-4">
+              <div className="w-10 h-10 bg-slate-600 rounded-full flex items-center justify-center hover:bg-slate-500 transition-colors cursor-pointer">
+                <Facebook className="w-5 h-5 text-gray-300" />
               </div>
-            ))}
+              <div className="w-10 h-10 bg-slate-600 rounded-full flex items-center justify-center hover:bg-slate-500 transition-colors cursor-pointer">
+                <Instagram className="w-5 h-5 text-gray-300" />
+              </div>
+              <div className="w-10 h-10 bg-slate-600 rounded-full flex items-center justify-center hover:bg-slate-500 transition-colors cursor-pointer">
+                <Twitter className="w-5 h-5 text-gray-300" />
+              </div>
+              <div className="w-10 h-10 bg-slate-600 rounded-full flex items-center justify-center hover:bg-slate-500 transition-colors cursor-pointer">
+                <Youtube className="w-5 h-5 text-gray-300" />
+              </div>
+              <div className="w-10 h-10 bg-slate-600 rounded-full flex items-center justify-center hover:bg-slate-500 transition-colors cursor-pointer">
+                <Linkedin className="w-5 h-5 text-gray-300" />
+              </div>
+            </div>
+          </div>
+
+          {/* Company Links */}
+          <div className="space-y-6">
+            <h4 className="text-white font-semibold text-lg">Company</h4>
+            <div className="space-y-3">
+              <a href="#" className="block text-gray-300 hover:text-white transition-colors">
+                Home
+              </a>
+              <a href="#" className="block text-gray-300 hover:text-white transition-colors">
+                About
+              </a>
+              <a href="#" className="block text-gray-300 hover:text-white transition-colors">
+                Why us
+              </a>
+              <a href="#" className="block text-gray-300 hover:text-white transition-colors">
+                Products
+              </a>
+              <a href="#" className="block text-gray-300 hover:text-white transition-colors">
+                Pricing
+              </a>
+              <a href="#" className="block text-gray-300 hover:text-white transition-colors">
+                Testimonials
+              </a>
+              <a href="#" className="block text-gray-300 hover:text-white transition-colors">
+                FAQ
+              </a>
+              <a href="#" className="block text-gray-300 hover:text-white transition-colors">
+                Contact
+              </a>
+            </div>
+          </div>
+
+          {/* Useful Links */}
+          <div className="space-y-6">
+            <h4 className="text-white font-semibold text-lg">Useful Links</h4>
+            <div className="space-y-3">
+              <a href="#contact" className="block text-gray-300 hover:text-white transition-colors">
+                Contact
+              </a>
+              <a href="#faq" className="block text-gray-300 hover:text-white transition-colors">
+                FAQ
+              </a>
+              <a href="/terms" className="block text-gray-300 hover:text-white transition-colors">
+                Terms of Services
+              </a>
+              <a href="/privacy" className="block text-gray-300 hover:text-white transition-colors">
+                Privacy Policy
+              </a>
+            </div>
+          </div>
+
+          {/* Investor Login Button */}
+          <div className="">
+            <button
+              className="relative inline-flex items-center gap-3 px-10 py-3 rounded-full font-bold text-white tracking-wide 
+      bg-gradient-to-b from-[#223046] to-[#162030] 
+      shadow-[0_0_20px_rgba(50,100,100,0.6)] 
+      border border-white/20 
+      hover:shadow-[0_0_25px_rgba(77,208,255,0.5)] 
+      transition-all duration-300"
+            >
+              INVESTOR LOGIN
+              <ArrowRight className="w-5 h-5" />
+            </button>
           </div>
         </div>
-      </div>
-    </div>
-  );
-};
 
-export default Footer;
+        {/* Copyright */}
+        <div className="mt-12 pt-8 border-t border-slate-600">
+          <p className="text-gray-400 text-base">
+            © 2025 <span className="bg-gradient-to-tr from-[#4DD0FF] to-[#FF00A8] text-[20px] bg-clip-text text-transparent font-semibold">THE TRADING HUB</span>. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+  )
+}

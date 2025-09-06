@@ -1,6 +1,5 @@
 "use client";
-import Lottie from "lottie-react";
-import blogLoading from "@/assets/BlogLoading.json";
+
 import { useEffect, useState } from "react";
 
 const MyLoading = () => {
@@ -13,9 +12,7 @@ const MyLoading = () => {
   
   return (
     <div className="h-full w-full flex justify-center items-center">
-      {isClient && (
-        <Lottie className="h-96 pt-5" animationData={blogLoading} loop={true} />
-      )}
+    <p>sfdds</p>
     </div>
   );
 };
