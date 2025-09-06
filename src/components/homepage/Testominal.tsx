@@ -102,8 +102,11 @@ function TestimonialCard({ testimonial }: { testimonial: (typeof testimonials)[0
 
 export default function TestimonialsSection() {
   return (
-    <section id="testimonials" className=" relative px-4 sm:px-6 py-12 sm:py-16 lg:px-12 lg:py-24 bg-transparent overflow-hidden">
-      <div className="mx-auto container">
+    <section
+      id="testimonials"
+      className="relative grid grid-cols-1 px-4 sm:px-6 py-12 sm:py-16 lg:px-12 lg:py-24 bg-transparent overflow-hidden"
+    >
+      <div className="">
         {/* Header */}
         <div className="text-center mb-8 sm:mb-10 md:mb-12">
           <p className="bg-gradient-to-t from-[#4DD0FF] to-[#FF00A8] bg-clip-text text-transparent text-xs sm:text-sm md:text-base lg:text-lg font-medium tracking-wider uppercase mb-2 sm:mb-3 md:mb-4">
@@ -129,13 +132,17 @@ export default function TestimonialsSection() {
           </Marquee>
         </div>
 
-        {/* Grid on small screens */}
-        <div className="lg:hidden grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-          {testimonials.map((testimonial) => (
-            <TestimonialCard key={`grid-${testimonial.id}`} testimonial={testimonial} />
-          ))}
+        {/* Horizontal scroll on mobile & tablet */}
+        <div className="lg:hidden overflow-x-auto scrollbar-hide">
+          <div className="flex gap-4 sm:gap-6 snap-x snap-mandatory px-1">
+            {testimonials.map((testimonial) => (
+              <div key={`scroll-${testimonial.id}`} className="snap-center">
+                <TestimonialCard testimonial={testimonial} />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
-  )
+  )
 }

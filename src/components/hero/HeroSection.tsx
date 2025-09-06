@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import image1 from "@/assets/logo/dash.png";
+import image1 from "@/assets/bg (6).png";
 
 export default function HeroSection() {
   return (
@@ -36,16 +36,25 @@ export default function HeroSection() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
           
           
-          <button className="px-6 py-2 bg-gradient-to-b from-[#B3B8BB00] to-[#8AA8B099] text-white font-bold rounded-full hover:from-[#bac8cc99] hover:to-[#B3B8BB00] transition duration-300">
+      <button
+  className="px-6 py-2 bg-gradient-to-b from-[#B3B8BB00] to-[#8AA8B099] text-white font-bold rounded-full hover:from-[#bac8cc99] hover:to-[#B3B8BB00] transition duration-300"
+  onClick={() => document.getElementById("product")?.scrollIntoView({ behavior: "smooth" })}
+>
   EXPLORE PRODUCTS
 </button>
-          <button className="px-8 py-3 bg-gradient-to-r from-purple-900 to-purple-900 text-white border border-white font-bold rounded-full hover:from-purple-800 hover:to-purple-950 transition duration-300">
+
+<button
+  className="px-8 py-3 bg-gradient-to-r from-purple-900 to-purple-900 text-white border border-white font-bold rounded-full hover:from-purple-800 hover:to-purple-950 transition duration-300"
+  onClick={() => document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" })}
+>
   VIEW PRICING
 </button>
-        </div>
+
+</div>
+
 
         {/* Dashboard Mockup replaced by Image */}
-        <div className="max-w-6xl mx-auto broder border-purple-300 border-x-[10px] border-t-[10px] rounded-t-[26px]">
+        <div className="max-w-6xl mx-auto broder border-purple-300 border-x-[12px] border-t-[12px] rounded-t-[32px]">
   <Image
     src={image1}
     alt="Dashboard Mockup"

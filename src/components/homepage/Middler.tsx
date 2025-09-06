@@ -17,7 +17,7 @@ const Middler = () => {
       {/* Content */}
       <div className="relative z-10">
         <ProductsSection />
-        {/* <TestimonialsSection /> */}
+        <TestimonialsSection />
         
       </div>
     </div>

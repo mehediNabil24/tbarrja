@@ -20,16 +20,16 @@ export default function TermsOfService() {
           <div className="space-y-8 text-white">
             <div className="space-y-6">
               <p className="text-sm leading-relaxed">
-                IMPORTANT - PLEASE CAREFULLY READ AND UNDERSTAND OUR TERMS OF USE AND CONDITIONS OF SALE ("TERMS" OR
-                "AGREEMENT") BEFORE ACCESSING OR USING, OR PLACING AN ORDER THROUGH OUR SITE. THESE TERMS CONTAIN
+                IMPORTANT - PLEASE CAREFULLY READ AND UNDERSTAND OUR TERMS OF USE AND CONDITIONS OF SALE (TERMS OR
+                AGREEMENT) BEFORE ACCESSING OR USING, OR PLACING AN ORDER THROUGH OUR SITE. THESE TERMS CONTAIN
                 DISCLAIMERS OF WARRANTIES AND LIMITATIONS OF LIABILITIES (SEE SECTIONS 15 AND 16). THESE TERMS FORM AN
                 ESSENTIAL BASIS OF OUR AGREEMENT.
               </p>
 
               <p className="text-sm leading-relaxed">
                 Your use of www.fintechstrategies.ai and/or www.thetradinghub.com including any subdomains thereof,
-                affiliated websites, and mobile applications (collectively, the "Site") which are owned and maintained
-                by FINTECH STRATEGIES, LLC (Fintech Strategies," "our," "us," or "we") are governed by the policies,
+                affiliated websites, and mobile applications (collectively, the Site) which are owned and maintained
+                by FINTECH STRATEGIES, LLC (Fintech Strategies, our, us, or we) are governed by the policies,
                 terms, and conditions set forth below. Please read our terms carefully. We offer the Site, including all
                 information, tools, products, and services available from the Site to you, the user, conditioned upon
                 your acceptance of all terms, conditions, policies, and notices stated here. By accessing, using, or
