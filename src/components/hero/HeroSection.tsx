@@ -4,7 +4,7 @@ import image1 from "@/assets/bg (6).png";
 
 export default function HeroSection() {
   return (
-    <div id="about" className=" scroll-smooth bg-transparent ">
+    <div  className=" scroll-smooth bg-transparent ">
       {/* Hero Content */}
       <div className="  container mx-auto px-6 pt-10 ">
         {/* Welcome Badge */}

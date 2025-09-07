@@ -10,10 +10,10 @@ export default function WhyChooseUs() {
     >
       <div className="px-6 py-12 sm:py-16 lg:px-12 lg:py-24">
         <div id="why-us" className="relative scroll-smooth container mx-auto">
-          <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 lg:gap-16 items-start">
+          <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 lg:gap-16 items-start text-justify">
             {/* Left Content */}
-            <div className="space-y-6 sm:space-y-8 w-full lg:w-[55%] xl:w-[50%]">
-              <div className="space-y-1 sm:space-y-2">
+            <div className="space-y-4 sm:space-y-4 w-full lg:w-[55%] xl:w-[50%]">
+              <div className="space-y-1 sm:space-y-2 text-center lg:text-start  mb-8 lg:mb-0">
                 <p className="bg-gradient-to-t from-[#4DD0FF] to-[#FF00A8] bg-clip-text text-transparent font-bold tracking-wider uppercase text-sm sm:text-base">
                   WHY CHOOSE US
                 </p>
@@ -24,6 +24,16 @@ export default function WhyChooseUs() {
                   <br />
                   TRADING Hub
                 </h2>
+              </div>
+
+               <div className="lg:hidden relative">
+                <Image
+                  src={image2}
+                  alt="THE TRADING HUB Logo"
+                  width={800}
+                  height={600}
+                  className="w-full h-auto lg:h-[850px] rounded-2xl object-cover"
+                />
               </div>
 
               <p className="text-gray-300 text-base sm:text-lg lg:text-[20px] leading-relaxed sm:leading-relaxed lg:leading-relaxed">
@@ -48,8 +58,8 @@ export default function WhyChooseUs() {
             </div>
 
             {/* Right Logo/Brand */}
-            <div className="w-full lg:w-[45%] xl:w-[50%]">
-              <div className="relative">
+            <div className="w-full hidden lg:block lg:w-[45%] xl:w-[50%]">
+              <div className="relative ">
                 <Image
                   src={image2}
                   alt="THE TRADING HUB Logo"

@@ -2,6 +2,8 @@
 
 import Image from "next/image"
 import Marquee from "react-fast-marquee"
+import { useRef } from "react"
+import { ChevronLeft, ChevronRight } from "lucide-react"
 import image1 from "@/assets/review-1.png"
 import image2 from "@/assets/review-2.png"
 
@@ -58,7 +60,7 @@ function TestimonialCard({ testimonial }: { testimonial: (typeof testimonials)[0
         p-4 sm:p-6 md:p-8 
         w-[220px] sm:w-[260px] md:w-[300px] lg:w-[340px] xl:w-[380px]
         mx-2 sm:mx-3 md:mx-4
-        flex-shrink-0
+        flex-shrink-0 text-justify
       "
     >
       <p className="text-gray-300 text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed mb-4 sm:mb-6">
@@ -66,13 +68,7 @@ function TestimonialCard({ testimonial }: { testimonial: (typeof testimonials)[0
       </p>
       <div className="flex items-center gap-3">
         {/* Avatar */}
-        <div
-          className="
-            relative 
-            w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14
-            rounded-full overflow-hidden flex-shrink-0
-          "
-        >
+        <div className="relative w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 rounded-full overflow-hidden flex-shrink-0">
           <Image
             src={testimonial.avatar ?? "/placeholder.svg"}
             alt={testimonial.name}
@@ -82,13 +78,7 @@ function TestimonialCard({ testimonial }: { testimonial: (typeof testimonials)[0
         </div>
         {/* Name + Title */}
         <div className="min-w-0">
-          <h4
-            className="
-              bg-gradient-to-r from-[#4DD0FF] to-[#FF00A8] bg-clip-text text-transparent 
-              font-semibold 
-              text-xs sm:text-sm md:text-base lg:text-lg truncate
-            "
-          >
+          <h4 className="bg-gradient-to-r from-[#4DD0FF] to-[#FF00A8] bg-clip-text text-transparent font-semibold text-xs sm:text-sm md:text-base lg:text-lg truncate">
             {testimonial.name}
           </h4>
           <p className="text-white text-[10px] sm:text-xs md:text-sm lg:text-base truncate">
@@ -101,18 +91,31 @@ function TestimonialCard({ testimonial }: { testimonial: (typeof testimonials)[0
 }
 
 export default function TestimonialsSection() {
+  const scrollRef = useRef<HTMLDivElement>(null)
+
+  const scroll = (direction: "left" | "right") => {
+    if (scrollRef.current) {
+      const scrollAmount = 300 // adjust scroll distance per click
+      if (direction === "left") {
+        scrollRef.current.scrollBy({ left: -scrollAmount, behavior: "smooth" })
+      } else {
+        scrollRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" })
+      }
+    }
+  }
+
   return (
     <section
       id="testimonials"
       className="relative grid grid-cols-1 px-4 sm:px-6 py-12 sm:py-16 lg:px-12 lg:py-24 bg-transparent overflow-hidden"
     >
-      <div className="">
+      <div>
         {/* Header */}
         <div className="text-center mb-8 sm:mb-10 md:mb-12">
           <p className="bg-gradient-to-t from-[#4DD0FF] to-[#FF00A8] bg-clip-text text-transparent text-xs sm:text-sm md:text-base lg:text-lg font-medium tracking-wider uppercase mb-2 sm:mb-3 md:mb-4">
             TESTIMONIALS
           </p>
-          <h2 className="text-lg sm:text-2xl md:text-3xl lg:text-4xl xl:text-[50px] font-bold text-white leading-tight sm:leading-snug">
+          <h2 className="text-3xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-[50px] font-bold text-white leading-tight sm:leading-snug">
             What our clients say
           </h2>
         </div>
@@ -133,16 +136,37 @@ export default function TestimonialsSection() {
         </div>
 
         {/* Horizontal scroll on mobile & tablet */}
-        <div className="lg:hidden overflow-x-auto scrollbar-hide">
-          <div className="flex gap-4 sm:gap-6 snap-x snap-mandatory px-1">
-            {testimonials.map((testimonial) => (
-              <div key={`scroll-${testimonial.id}`} className="snap-center">
-                <TestimonialCard testimonial={testimonial} />
-              </div>
-            ))}
+        <div className="lg:hidden">
+          <div className="relative">
+            <div
+              ref={scrollRef}
+              className="flex gap-4 sm:gap-6 snap-x snap-mandatory px-1 overflow-x-auto scrollbar-hide"
+            >
+              {testimonials.map((testimonial) => (
+                <div key={`scroll-${testimonial.id}`} className="snap-center">
+                  <TestimonialCard testimonial={testimonial} />
+                </div>
+              ))}
+            </div>
+
+            {/* Scroll buttons */}
+            <div className="flex justify-center gap-4 mt-4">
+              <button
+                onClick={() => scroll("left")}
+                className="p-2 bg-slate-700 rounded-full text-white hover:bg-slate-600 transition"
+              >
+                <ChevronLeft />
+              </button>
+              <button
+                onClick={() => scroll("right")}
+                className="p-2 bg-slate-700 rounded-full text-white hover:bg-slate-600 transition"
+              >
+                <ChevronRight />
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </section>
-  )
+  )
 }

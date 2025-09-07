@@ -26,13 +26,13 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="relative px-6 py-12 sm:py-16 lg:px-12 lg:py-24 bg-slate-900">
+    <section id="contact" className="relative px-6 py-12 sm:py-16 lg:px-12 lg:py-24 bg-slate-900 text-justify">
       <div className="mx-auto container">
         <div className="grid gap-10 sm:gap-12 lg:grid-cols-2 lg:gap-16 items-start">
           
           {/* Left Content */}
           <div className="space-y-6 sm:space-y-8 lg:space-y-10">
-            <div className="space-y-2 sm:space-y-3">
+            <div className="space-y-2 sm:space-y-3 text-center lg:text-start ">
               <p className="bg-gradient-to-t from-[#4DD0FF] to-[#FF00A8] text-sm sm:text-base bg-clip-text text-transparent font-medium tracking-wider uppercase">
                 CONTACT US
               </p>
@@ -43,7 +43,7 @@ export default function ContactSection() {
               </h2>
             </div>
 
-            <p className="text-gray-300 text-base sm:text-lg leading-relaxed sm:leading-relaxed">
+            <p className="text-gray-300 text-base sm:text-lg leading-relaxed sm:leading-relaxed text-center lg:text-start  mb-8 lg:mb-0">
               Have questions or ready to get started? We&apos;re here.
             </p>
           </div>
@@ -124,6 +124,7 @@ export default function ContactSection() {
                 </div>
 
                 {/* Submit Button */}
+                <div className="flex justify-center lg:justify-start">
                 <button
                   type="submit"
                   className="relative inline-flex items-center gap-2 sm:gap-3 px-8 sm:px-10 py-3 sm:py-4 rounded-full font-bold text-white tracking-wide 
@@ -136,6 +137,7 @@ export default function ContactSection() {
                   CONTACT US
                   <ArrowRight className="w-4 sm:w-5 h-4 sm:h-5" />
                 </button>
+                </div>
 
               </form>
             </div>

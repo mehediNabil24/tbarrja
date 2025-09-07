@@ -6,28 +6,30 @@ import { Dropdown, Menu } from "antd";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { usePathname } from "next/navigation"; // 👈 import
 import DrawerPage from "./Drawer";
 
 const Navbar = () => {
   const [open, setOpen] = useState<boolean>(false);
+  const pathname = usePathname(); // 👈 get current path
 
   const navItems = [
     { key: "home", label: "Home", href: "/" },
-    { key: "about", label: "About", href: "#about" },
-    { key: "why-us", label: "Why us", href: "#why-us" },
-    { key: "products", label: "Products", href: "#product" },
-    { key: "pricing", label: "Pricing", href: "#pricing" },
-    { key: "testimonials", label: "Testimonials", href: "#testimonials" },
-    { key: "faq", label: "FAQ", href: "#faq" },
-    { key: "contact", label: "Contact", href: "#contact" },
+    { key: "about", label: "About", href: "/#about" },
+    { key: "why-us", label: "Why us", href: "/#why-us" },
+    { key: "products", label: "Products", href: "/products" },
+    { key: "pricing", label: "Pricing", href: "/pricing" },
+    { key: "testimonials", label: "Testimonials", href: "/#testimonials" },
+    { key: "faq", label: "FAQ", href: "/faq" },
+    { key: "contact", label: "Contact", href: "/#contact" },
   ];
 
   const languageMenu = (
     <Menu>
       <Menu.Item key="en">English</Menu.Item>
       <Menu.Item key="es">Spanish</Menu.Item>
-      <Menu.Item key="es">French</Menu.Item>
-      <Menu.Item key="es">German</Menu.Item>
+      <Menu.Item key="fr">French</Menu.Item>
+      <Menu.Item key="de">German</Menu.Item>
     </Menu>
   );
 
@@ -35,36 +37,39 @@ const Navbar = () => {
     <div className="w-full bg-transparent text-white py-5 md:py-6 lg:py-7 top-0 z-50">
       <div className="container mx-auto flex justify-between items-center px-4">
         {/* Logo */}
-       <Link href="/">
-  <Image
-    src={logo}
-    alt="logo"
-    className="
-      w-[240px]        /* base mobile */
-      sm:w-[240px]     /* ≥640px */
-      md:w-[240px]     /* ≥768px */
-      lg:w-[140px]     /* ≥1024px */
-      xl:w-[240px]     /* ≥1280px */
-      2xl:w-[240px]    /* ≥1536px */
-    "
-    width={240}
-    height={200}
-    priority
-  />
-</Link>
-
+        <Link href="/">
+          <Image
+            src={logo}
+            alt="logo"
+            className="
+              w-[240px] sm:w-[240px] md:w-[240px] 
+              lg:w-[140px] xl:w-[240px] 2xl:w-[240px]
+            "
+            width={240}
+            height={200}
+            priority
+          />
+        </Link>
 
         {/* Menu links */}
-        <div className="hidden lg:flex gap-4 xl:gap-6 text-[13px] xl:text-[14px] font-medium text-white">
-          {navItems.map((item) => (
-            <Link
-              key={item.key}
-              href={item.href}
-              className="hover:text-purple-300 duration-300"
-            >
-              {item.label}
-            </Link>
-          ))}
+        <div className="hidden lg:flex gap-4 xl:gap-6 text-[13px] xl:text-[14px] font-medium">
+          {navItems.map((item) => {
+            const isActive =
+              pathname === item.href || pathname === item.href.replace("/#", "");
+            return (
+              <Link
+                key={item.key}
+                href={item.href}
+                className={`duration-300 ${
+                  isActive
+                    ? "text-purple-400 font-semibold"
+                    : "text-white hover:text-purple-300"
+                }`}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
         </div>
 
         {/* Right buttons */}

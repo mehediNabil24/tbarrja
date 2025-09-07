@@ -71,7 +71,7 @@ export default function FaqAccordion() {
       {/* Optional overlay */}
       <div className="absolute inset-0 bg-black/30"></div>
     <section
-      className="relative px-6 py-16 lg:px-12 lg:py-24 bg-cover bg-center bg-no-repeat"
+      className="relative px-6 py-16 lg:px-12 lg:py-24 bg-cover bg-center bg-no-repeat "
      
     >
       <div className="mx-auto max-w-4xl">

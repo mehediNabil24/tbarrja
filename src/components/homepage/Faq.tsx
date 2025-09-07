@@ -7,8 +7,8 @@ export default function FaqSection() {
   const router = useRouter();
 
   return (
-    <div id="faq" className="bg-slate-900">
-      <section className="relative px-6 py-12 sm:py-16 lg:px-12 lg:py-24 rounded-2xl overflow-hidden">
+    <div id="faq" className="bg-slate-900 justify-text">
+      <section className="relative px-8 py-12 sm:py-16 lg:px-12 lg:py-24 rounded-2xl overflow-hidden">
         
         {/* Background Image */}
         <div
@@ -28,7 +28,7 @@ export default function FaqSection() {
               </p>
 
               {/* Heading */}
-              <h2 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-white leading-snug sm:leading-tight lg:leading-tight">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-snug sm:leading-tight lg:leading-tight">
                 Looking For Answers?
                 <br />
                 Start Here.

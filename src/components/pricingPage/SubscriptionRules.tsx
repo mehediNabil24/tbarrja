@@ -19,7 +19,7 @@ export default function SubscriptionRules() {
     
 
       <div className="relative container">
-        <h2 className="text-2xl lg:text-3xl font-bold text-white mb-8 tracking-wide">SUBSCRIPTIONS RULES AND NOTES:</h2>
+        <h2 className="text-2xl lg:text-3xl font-bold text-white mb-8 tracking-wide text-center lg:text-start  ">SUBSCRIPTIONS RULES AND NOTES:</h2>
 
         <div className="space-y-6">
           {rules.map((rule, index) => (

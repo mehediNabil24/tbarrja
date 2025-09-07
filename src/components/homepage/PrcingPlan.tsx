@@ -9,7 +9,7 @@ export default function PricingSection() {
   const router = useRouter();
   return (
     <div
-      className="relative bg-cover bg-center bg-no-repeat"
+      className="relative bg-cover bg-center bg-no-repeat text-justify"
       style={{ backgroundImage: `url(${bgImage.src})` }}
     >
       <section id="pricing" className="relative px-6 py-12 sm:py-16 lg:px-12 lg:py-24 overflow-hidden">
@@ -18,7 +18,7 @@ export default function PricingSection() {
             
             {/* Left Content */}
             <div className="space-y-6 sm:space-y-8 lg:space-y-10">
-              <div className="space-y-3 sm:space-y-4">
+              <div className="space-y-3 sm:space-y-4 text-center lg:text-start  mb-8 lg:mb-0">
                 <p className="bg-gradient-to-t from-[#4DD0FF] to-[#FF00A8] text-sm sm:text-base bg-clip-text text-transparent font-medium tracking-wider uppercase">
                   PRICING PLAN
                 </p>
@@ -30,6 +30,16 @@ export default function PricingSection() {
                   Gatekeeping.
                 </h2>
               </div>
+
+               <div className="rounded-xl lg:hidden overflow-hidden">
+                  <Image
+                    src={image1}
+                    alt="Golden bull with digital trading elements and city lights"
+                    width={800}
+                    height={600}
+                    className="w-full h-auto md:h-[450px] lg:h-[850px] object-cover"
+                  />
+                </div>
 
               <p className="text-[#C1C1C1] text-base sm:text-lg leading-relaxed sm:leading-relaxed lg:leading-relaxed">
                 Why should you need insider access, special connections, or backdoor deals just to get fair pricing? We&apos;ve seen the games other platforms play — offering different prices to different people, hiding costs until the last minute, or rewarding those who know someone.
@@ -49,6 +59,8 @@ export default function PricingSection() {
                 </p>
               </div>
 
+              <div className="flex justify-center lg:justify-start">
+
               <button
                 onClick={() => router.push("/pricing")}
                 className="relative inline-flex items-center gap-2 sm:gap-3 px-8 sm:px-10 py-3 sm:py-4 rounded-full font-bold text-white tracking-wide 
@@ -61,10 +73,11 @@ export default function PricingSection() {
                 PRICING PLAN
                 <ArrowRight className="w-4 sm:w-5 h-4 sm:h-5" />
               </button>
+              </div>
             </div>
 
             {/* Right Image */}
-            <div className="relative w-full">
+            <div className="relative hidden lg:block w-full">
               <div className="relative rounded-2xl overflow-hidden p-1">
                 <div className="rounded-xl overflow-hidden">
                   <Image

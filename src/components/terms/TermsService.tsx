@@ -15,7 +15,7 @@ export default function TermsOfService() {
      
 
       {/* Content */}
-      <div className="relative z-10 px-6 py-16 lg:px-12 lg:py-24">
+      <div className="relative z-10 px-6 py-16 lg:px-12 lg:py-24 text-justify">
         <div className="mx-auto container">
           <div className="space-y-8 text-white">
             <div className="space-y-6">

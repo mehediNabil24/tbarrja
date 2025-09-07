@@ -66,7 +66,7 @@ export default function ExpertAdvisorsShowcase() {
       {/* Optional overlay */}
       <div className="absolute inset-0 bg-black/30"></div>
 
-    <section className="relative py-16 lg:py-24 overflow-hidden">
+    <section className="relative py-16 lg:py-24 overflow-hidden text-justify lg:text-start">
       {/* Background Image */}
      
 

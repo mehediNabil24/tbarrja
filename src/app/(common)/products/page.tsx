@@ -3,6 +3,7 @@
 
 
 
+import FaqSection from '@/components/homepage/Faq'
 import ExpertAdvisorsShowcase from '@/components/productPage/ExpertAdvisor'
 
 import ProductHero from '@/components/productPage/ProductHero'
@@ -15,6 +16,9 @@ export default function page() {
         
        <ProductHero></ProductHero>
         <ExpertAdvisorsShowcase></ExpertAdvisorsShowcase>
+        <div className='block lg:hidden'>
+          <FaqSection></FaqSection>
+        </div>
 
     </div>
   )
