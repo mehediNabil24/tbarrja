@@ -14,23 +14,33 @@ const navItems: MenuItem[] = [
     <LuLayoutDashboard />
   ),
   getItem(
-    <Link href="/dashboard/roofing">Roofing</Link>,
-    "/dashboard/roofing",
+    <Link href="/dashboard/addProduct">Add Product</Link>,
+    "/dashboard/addProduct",
     <LuLayoutDashboard />
   ),
   getItem(
-    <Link href="/dashboard/blogs">Blogs</Link>,
-    "/dashboard/blogs",
+    <Link href="/dashboard/productList">Product List</Link>,
+    "/dashboard/productList",
     <LuLayoutDashboard />
   ),
   getItem(
-    <Link href="/dashboard/about">About</Link>,
-    "/dashboard/about",
+    <Link href="/dashboard/addPricing">Add Pricing</Link>,
+    "/dashboard/addPricing",
     <LuLayoutDashboard />
   ),
   getItem(
-    <Link href="/dashboard/reviews">Reviews</Link>,
-    "/dashboard/reviews",
+    <Link href="/dashboard/pricingList">Pricing List </Link>,
+    "/dashboard/pricingList",
+    <LuLayoutDashboard />
+  ),
+  getItem(
+    <Link href="/dashboard/addRules">Add Subscription Rules </Link>,
+    "/dashboard/addRules",
+    <LuLayoutDashboard />
+  ),
+  getItem(
+    <Link href="/dashboard/allRules">All Subscription Rules </Link>,
+    "/dashboard/allRules",
     <LuLayoutDashboard />
   ),
 ];
