@@ -1,10 +1,10 @@
 
-import SubscriptionList from "@/components/dashboard/subscription/AllRules";
+import AddReviewForm from "@/components/dashboard/testimonial/addReview";
 import React from "react";
 
 const DashbaordPage = () => {
   return <div>
-<SubscriptionList></SubscriptionList>
+    <AddReviewForm></AddReviewForm>
   </div>;
 };
 

@@ -1,10 +1,12 @@
 
-import SubscriptionList from "@/components/dashboard/subscription/AllRules";
+import AddQAForm from "@/components/dashboard/faq/AddFaq";
+
 import React from "react";
 
 const DashbaordPage = () => {
   return <div>
-<SubscriptionList></SubscriptionList>
+    <AddQAForm></AddQAForm>
+ 
   </div>;
 };
 

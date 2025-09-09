@@ -22,7 +22,7 @@ const AddSubscriptionRules: React.FC = () => {
   };
 
   return (
-    <div className="p-6 rounded-lg shadow-sm container bg-white">
+    <div className="p-4 rounded-lg   bg-white">
       <h2 className="text-2xl font-bold text-gray-800 mb-6">
         Add Subscription Rules
       </h2>
@@ -55,7 +55,7 @@ const AddSubscriptionRules: React.FC = () => {
         <div className="flex justify-end gap-3 mt-4">
           <button
             type="submit"
-            className="px-4 py-2 bg-yellow-500 text-white rounded-md hover:bg-yellow-600"
+            className="px-4 py-2 bg-[#FFB833]  text-black rounded-md hover:bg-yellow-700"
           >
             Add Subscription Rules
           </button>

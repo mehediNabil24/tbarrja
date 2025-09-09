@@ -28,7 +28,7 @@ const AddPricingForm: React.FC = () => {
   };
 
   return (
-    <div className="p-6 rounded-lg shadow-sm container bg-white">
+    <div className="p-4 rounded-lg shadow-sm  ">
       <h2 className="text-2xl font-bold text-gray-800 mb-6">Add Pricing</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
 
@@ -134,7 +134,7 @@ const AddPricingForm: React.FC = () => {
           </button>
           <button
             type="submit"
-            className="px-4 py-2 bg-yellow-500 text-white rounded-md hover:bg-yellow-600"
+            className="px-4 py-2 bg-yellow-500 text-black rounded-md hover:bg-yellow-600"
           >
             Add Pricing
           </button>

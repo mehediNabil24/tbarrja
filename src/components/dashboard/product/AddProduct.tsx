@@ -33,8 +33,8 @@ const AddProductForm: React.FC = () => {
   };
 
   return (
-    <div className="p-4 rounded-lg shadow-sm container">
-      <h2 className="text-xl font-semibold text-gray-800 mb-4">Add New Product</h2>
+    <div className="p-4 rounded-lg shadow-sm ">
+      <h2 className="text-xl font-bold text-gray-800 mb-4">Add New Product</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
 
         {/* Top row: Date + Product Name */}
@@ -172,7 +172,7 @@ const AddProductForm: React.FC = () => {
           </button>
           <button
             type="submit"
-            className="px-3 py-1.5 bg-[#FFB833] text-white rounded-md hover:bg-yellow-600"
+            className="px-3 py-1.5 bg-[#FFB833] text-black rounded-md hover:bg-yellow-600"
           >
             Add Product
           </button>

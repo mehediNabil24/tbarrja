@@ -4,76 +4,80 @@
 import React, { useState } from "react";
 import { Table, Space, Modal, Button,  Pagination } from "antd";
 import { EditOutlined, DeleteOutlined, PlusOutlined } from "@ant-design/icons";
-import SubscriptionEditModal from "./RuleModal";
+import FaqEditModal from "./EditFaq";
 import { useRouter } from "next/navigation";
 
 
-interface SubscriptionRule {
+interface FAQ {
   id: number;
-  rule: string;
+  question: string;
+  answer: string;
 }
 
-// ✅ Sample static subscription rules
-const initialRules: SubscriptionRule[] = [
-  { id: 1, rule: "3 Months subscription with auto renewal" },
-  { id: 2, rule: "Lifetime subscription with one-time payment" },
-  { id: 3, rule: "6 Months subscription with 10% discount" },
+// ✅ Sample static FAQ list
+const initialFaqs: FAQ[] = [
+  { id: 1, question: "What is your refund policy?", answer: "We offer a 30-day refund policy for all purchases." },
+  { id: 2, question: "How can I contact support?", answer: "You can reach out to support via email or live chat 24/7." },
+  { id: 3, question: "Do you provide discounts?", answer: "Yes, we offer seasonal discounts and student discounts." },
 ];
 
-const SubscriptionList: React.FC = () => {
+const FaqList: React.FC = () => {
   const router = useRouter();
-  const [rules, setRules] = useState<SubscriptionRule[]>(initialRules);
-  const [selectedRule, setSelectedRule] = useState<SubscriptionRule | null>(null);
+  const [faqs, setFaqs] = useState<FAQ[]>(initialFaqs);
+  const [selectedFaq, setSelectedFaq] = useState<FAQ | null>(null);
   const [isEditModalVisible, setEditModalVisible] = useState(false);
   const [isAddModalVisible, setAddModalVisible] = useState(false);
   const [searchText] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 5;
 
-  // Delete rule
+  // Delete FAQ
   const handleDelete = (id: number) => {
     Modal.confirm({
-      title: "Are you sure you want to delete this subscription rule?",
-      onOk: () => setRules(rules.filter((r) => r.id !== id)),
+      title: "Are you sure you want to delete this FAQ?",
+      onOk: () => setFaqs(faqs.filter((f) => f.id !== id)),
     });
   };
 
-  // Update rule
-  const handleUpdate = (updated: SubscriptionRule) => {
-    setRules(rules.map((r) => (r.id === updated.id ? updated : r)));
+  // Update FAQ
+  const handleUpdate = (updated: FAQ) => {
+    setFaqs(faqs.map((f) => (f.id === updated.id ? updated : f)));
     setEditModalVisible(false);
-    setSelectedRule(null);
+    setSelectedFaq(null);
   };
 
-  // Add new rule
-  const handleAdd = (newRule: SubscriptionRule) => {
-    setRules([...rules, { ...newRule, id: rules.length + 1 }]);
+  // Add new FAQ
+  const handleAdd = (newFaq: FAQ) => {
+    setFaqs([...faqs, { ...newFaq, id: faqs.length + 1 }]);
     setAddModalVisible(false);
   };
 
-  // Filtered rules
-  const filteredRules = rules.filter((r) =>
-    r.rule.toLowerCase().includes(searchText.toLowerCase())
+  // Filtered FAQs
+  const filteredFaqs = faqs.filter(
+    (f) =>
+      f.question.toLowerCase().includes(searchText.toLowerCase()) ||
+      f.answer.toLowerCase().includes(searchText.toLowerCase())
   );
 
   // Pagination slice
-  const paginatedRules = filteredRules.slice(
+  const paginatedFaqs = filteredFaqs.slice(
     (currentPage - 1) * pageSize,
     currentPage * pageSize
   );
 
   const columns = [
     { title: "Sl.", render: (_: any, __: any, index: number) => index + 1 },
-    { title: "Subscription Rule", dataIndex: "rule" },
+    { title: "Question", dataIndex: "question" },
+    { title: "Answer", dataIndex: "answer" },
     {
       title: "Action",
-      render: (_: any, record: SubscriptionRule) => (
+      render: (_: any, record: FAQ) => (
         <Space size="middle">
           <Button
             icon={<EditOutlined />}
             style={{ backgroundColor: "#FFA600", color: "#fff", border: "none" }}
             onClick={() => {
-              setSelectedRule(record);
+              setSelectedFaq(record);
               setEditModalVisible(true);
             }}
           />
@@ -91,23 +95,23 @@ const SubscriptionList: React.FC = () => {
     <div className="p-4">
       {/* Header with title, search, and add button */}
       <div className="flex flex-col sm:flex-row justify-between items-center mb-4 gap-4">
-        <h2 className="text-2xl font-bold text-gray-800">All Subscription Rules</h2>
+        <h2 className="text-2xl font-bold text-gray-800">FAQ List</h2>
         <div className="flex gap-2">
-       
+     
           <Button
             type="primary"
             icon={<PlusOutlined />}
             style={{ backgroundColor: "#FFA600", border: "none", color: "black" }}
-           onClick={() => router.push("/dashboard/addRule")}
+            onClick={() => router.push("/dashboard/addFaq")}
           >
-            Add Rule
+            Add FAQ
           </Button>
         </div>
       </div>
 
-      {/* Subscription Rules Table */}
+      {/* FAQ Table */}
       <Table
-        dataSource={paginatedRules}
+        dataSource={paginatedFaqs}
         columns={columns}
         rowKey="id"
         pagination={false}
@@ -118,20 +122,20 @@ const SubscriptionList: React.FC = () => {
         <Pagination
           current={currentPage}
           pageSize={pageSize}
-          total={filteredRules.length}
+          total={filteredFaqs.length}
           onChange={setCurrentPage}
           showSizeChanger={false}
         />
       </div>
 
       {/* Edit Modal */}
-      {selectedRule && (
-        <SubscriptionEditModal
+      {selectedFaq && (
+        <FaqEditModal
           visible={isEditModalVisible}
-          rule={selectedRule}
+          faq={selectedFaq}
           onClose={() => {
             setEditModalVisible(false);
-            setSelectedRule(null);
+            setSelectedFaq(null);
           }}
           onSave={handleUpdate}
         />
@@ -139,9 +143,9 @@ const SubscriptionList: React.FC = () => {
 
       {/* Add Modal */}
       {isAddModalVisible && (
-        <SubscriptionEditModal
+        <FaqEditModal
           visible={isAddModalVisible}
-          rule={{ id: 0, rule: "" }}
+          faq={{ id: 0, question: "", answer: "" }}
           onClose={() => setAddModalVisible(false)}
           onSave={handleAdd}
         />
@@ -150,4 +154,4 @@ const SubscriptionList: React.FC = () => {
   );
 };
 
-export default SubscriptionList;
+export default FaqList;

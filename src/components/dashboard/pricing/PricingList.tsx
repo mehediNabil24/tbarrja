@@ -1,10 +1,11 @@
-// app/products/page.tsx
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import React, { useState } from "react";
-import { Table, Space, Modal, Button, Input, Pagination } from "antd";
-import { EditOutlined, DeleteOutlined, PlusOutlined, SearchOutlined } from "@ant-design/icons";
+import { Table, Space, Modal, Button, Pagination } from "antd";
+import { EditOutlined, DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 import PricingEditModal from "./EditPricing";
+import { useRouter } from "next/navigation";
 
 
 interface Pricing {
@@ -45,11 +46,12 @@ const initialPricing: Pricing[] = [
 ];
 
 const PricingList: React.FC = () => {
+  const router = useRouter();
   const [pricing, setPricing] = useState<Pricing[]>(initialPricing);
   const [selectedPricing, setSelectedPricing] = useState<Pricing | null>(null);
   const [isEditModalVisible, setEditModalVisible] = useState(false);
   const [isAddModalVisible, setAddModalVisible] = useState(false);
-  const [searchText, setSearchText] = useState("");
+  const [searchText] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 5;
 
@@ -120,18 +122,12 @@ const PricingList: React.FC = () => {
       <div className="flex flex-col sm:flex-row justify-between items-center mb-4 gap-4">
         <h2 className="text-2xl font-bold text-gray-800">Pricing List</h2>
         <div className="flex gap-2">
-          <Input
-            placeholder="Search by product type"
-            value={searchText}
-            onChange={(e) => setSearchText(e.target.value)}
-            style={{ width: 220 }}
-            prefix={<SearchOutlined />}
-          />
+  
           <Button
             type="primary"
             icon={<PlusOutlined />}
-            style={{ backgroundColor: "#FFA600", border: "none", color: "#fff" }}
-            onClick={() => setAddModalVisible(true)}
+            style={{ backgroundColor: "#FFA600", border: "none", color: "black" }}
+           onClick={() => router.push("/dashboard/addPricing")}
           >
             Add Pricing
           </Button>

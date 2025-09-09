@@ -1,7 +1,7 @@
 "use client";
 
-import { CloseOutlined } from "@ant-design/icons";
-import { Button, Divider, Drawer } from "antd";
+import { CloseOutlined, GlobalOutlined, DownOutlined } from "@ant-design/icons";
+import { Button, Divider, Drawer, Dropdown, Menu } from "antd";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -21,6 +21,21 @@ const DrawerPage = ({ open, setOpen }: DrawerProps) => {
     `duration-300 ${
       pathname === href ? "text-purple-400 font-semibold" : "text-white hover:text-purple-300"
     }`;
+
+  // Language menu
+const languageMenu = (
+  <Menu>
+    <Menu.Item key="en">English</Menu.Item>
+    <Menu.Item key="fil">Filipino</Menu.Item>
+    <Menu.Item key="jp">Japanese</Menu.Item>
+    <Menu.Item key="man">Mandarin</Menu.Item>
+    <Menu.Item key="ch">Chinese</Menu.Item>
+    <Menu.Item key="kr">Korean</Menu.Item>
+    <Menu.Item key="pt">Portuguese</Menu.Item>
+    <Menu.Item key="hi">Hindi</Menu.Item>
+  </Menu>
+);
+
 
   return (
     <Drawer
@@ -60,6 +75,18 @@ const DrawerPage = ({ open, setOpen }: DrawerProps) => {
       </div>
 
       <Divider className="border-gray-700 my-6" />
+
+      {/* Language Dropdown */}
+      <div className="mb-4">
+        <Dropdown overlay={languageMenu} trigger={['click']}>
+          <Button className="w-full flex items-center justify-between text-white font-semibold py-3 rounded-full bg-transparent border border-white/20 hover:bg-purple-700 hover:text-white transition-all">
+            <span className="flex items-center gap-2">
+              <GlobalOutlined /> English
+            </span>
+            <DownOutlined />
+          </Button>
+        </Dropdown>
+      </div>
 
       {/* Buttons */}
       <div className="flex flex-col gap-3">

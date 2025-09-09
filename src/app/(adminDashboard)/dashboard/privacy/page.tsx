@@ -1,10 +1,10 @@
+import PrivacyPage from "@/components/dashboard/privacy/Privacy";
 
-import SubscriptionList from "@/components/dashboard/subscription/AllRules";
 import React from "react";
 
 const DashbaordPage = () => {
   return <div>
-<SubscriptionList></SubscriptionList>
+   <PrivacyPage></PrivacyPage>
   </div>;
 };
 

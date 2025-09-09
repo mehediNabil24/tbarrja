@@ -25,12 +25,16 @@ const Navbar = () => {
   ];
 
   const languageMenu = (
-    <Menu>
-      <Menu.Item key="en">English</Menu.Item>
-      <Menu.Item key="es">Spanish</Menu.Item>
-      <Menu.Item key="fr">French</Menu.Item>
-      <Menu.Item key="de">German</Menu.Item>
-    </Menu>
+      <Menu>
+    <Menu.Item key="en">English</Menu.Item>
+    <Menu.Item key="fil">Filipino</Menu.Item>
+    <Menu.Item key="jp">Japanese</Menu.Item>
+    <Menu.Item key="man">Mandarin</Menu.Item>
+    <Menu.Item key="ch">Chinese</Menu.Item>
+    <Menu.Item key="kr">Korean</Menu.Item>
+    <Menu.Item key="pt">Portuguese</Menu.Item>
+    <Menu.Item key="hi">Hindi</Menu.Item>
+  </Menu>
   );
 
   return (

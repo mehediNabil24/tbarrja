@@ -1,4 +1,4 @@
-// app/products/page.tsx
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import React, { useState } from "react";
@@ -6,6 +6,7 @@ import { Table, Space, Modal, Button, Input, Pagination } from "antd";
 import { EditOutlined, DeleteOutlined, PlusOutlined, SearchOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
 import ProductEditModal from "./EditProduct";
+import { useRouter } from "next/navigation";
 
 interface Product {
   id: number;
@@ -20,6 +21,7 @@ interface Product {
 
 // Static product data
 const initialProducts: Product[] = [
+
   {
     id: 1,
     date: "2025-09-01",
@@ -53,6 +55,7 @@ const initialProducts: Product[] = [
 ];
 
 const ProductList: React.FC = () => {
+    const router = useRouter()
   const [products, setProducts] = useState<Product[]>(initialProducts);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isEditModalVisible, setEditModalVisible] = useState(false);
@@ -137,8 +140,8 @@ const ProductList: React.FC = () => {
           <Button
             type="primary"
             icon={<PlusOutlined />}
-            style={{ backgroundColor: "#FFA600", border: "none", color: "#fff" }}
-            onClick={() => setAddModalVisible(true)}
+            style={{ backgroundColor: "#FFA600", border: "none", color: "black" }}
+            onClick={() => router.push("/dashboard/addProduct")}
           >
             Add Product
           </Button>

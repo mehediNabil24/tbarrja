@@ -68,3 +68,37 @@ input[type="number"] {
     background-position: left;
   }
 }
+
+
+/* globals.css or a module css file */
+.custom-sidebar .ant-menu-item {
+  color: white !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Active menu item */
+.custom-sidebar .ant-menu-item-selected {
+  background-color: #89A8B0 !important; /* selected bg */
+  color: white !important; /* selected text */
+  font-weight: 600;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Global Ant Design Table header style */
+.ant-table-thead > tr > th {
+  background-color: #eccb8e !important; /* yellow background */
+  color: #000000 !important; /* optional: black text */
+  font-weight: 600; /* optional: bold text */
+  transition: background-color 0.3s ease, color 0.3s ease; /* optional: smooth transition */
+}
+
+.ant-pagination-item {
+  background-color: #eccb8e !important; /* yellow background */
+  border-color: #FFD700 !important; /* yellow border */
+  color: #eccb8e !important; /* black text */
+  transition: all 0.3s ease;
+}
+
+
+
+

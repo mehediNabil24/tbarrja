@@ -1,10 +1,11 @@
 
-import SubscriptionList from "@/components/dashboard/subscription/AllRules";
+import TermsPage from "@/components/dashboard/terms/Terms";
 import React from "react";
 
 const DashbaordPage = () => {
   return <div>
-<SubscriptionList></SubscriptionList>
+    <TermsPage></TermsPage>
+    
   </div>;
 };
 

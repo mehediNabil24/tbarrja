@@ -37,7 +37,9 @@ const ProductEditModal: React.FC<Props> = ({ visible, product, onClose, onSave }
       onCancel={onClose}
       onOk={() => onSave(formData)}
       okText="Save"
+      
       cancelText="Cancel"
+      
     >
       <div className="space-y-3">
         <div>
