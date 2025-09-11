@@ -1,0 +1,1940 @@
+{
+	"info": {
+		"_postman_id": "c17d5c32-f4e4-4f60-9e71-cd02622a5572",
+		"name": "Trading Hub Admin API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43820327",
+		"_collection_link": "https://team-fahad.postman.co/workspace/Team-Workspace~4ccd7ce0-9957-4a3f-8f54-c74f660cd31a/collection/43820327-c17d5c32-f4e4-4f60-9e71-cd02622a5572?action=share&source=collection_link&creator=43820327"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"admin@gmail.com\",\n  \"password\": \"Password123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"admin@gmail.com\",\n  \"password\": \"123456\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/auth/login",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "vary",
+									"value": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Sep 2025 21:45:44 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGMxZWZjZDNmMDA5NGFjNDIxMjYxYmUiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NTc1NDA3NDQsImV4cCI6MTc1Nzc5OTk0NH0.UGfDCggJp6VpPrr5SbODZNCFdR8Xzb-gXmhhu-lPwHM\",\n    \"user\": {\n        \"id\": \"68c1efcd3f0094ac421261be\",\n        \"email\": \"admin@gmail.com\",\n        \"role\": \"ADMIN\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "change-password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token_tba}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token_tba}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \t\"currentPassword\":\"Password123\",\r\n\t\t\"newPassword\": \"Password1234\",\r\n\t\t\"confirmNewPassword\": \"Password1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/change-password",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"change-password"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "same password input error",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token_tba}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \t\"currentPassword\":\"Password123\",\r\n\t\t\"newPassword\": \"Password1234\",\r\n\t\t\"confirmNewPassword\": \"Password1234\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/auth/change-password",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"change-password"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "vary",
+									"value": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Sep 2025 23:55:59 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"New password must be different from current password\",\n    \"error\": \"Password unchanged\"\n}"
+						},
+						{
+							"name": "validation faild",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token_tba}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \t\"currentPassword\":\"Password123\",\r\n\t\t\"newPassword\": \"123456\",\r\n\t\t\"confirmNewPassword\": \"123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/auth/change-password",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"change-password"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Sep 2025 23:57:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"error\": \"Validation failed\",\n    \"details\": \"newPassword: New password must be at least 8 characters, newPassword: Password must contain at least one uppercase letter, one lowercase letter, and one number\"\n}"
+						},
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token_tba}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \t\"currentPassword\":\"Password123\",\r\n\t\t\"newPassword\": \"Password1234\",\r\n\t\t\"confirmNewPassword\": \"Password1234\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/auth/change-password",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"change-password"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "vary",
+									"value": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Sep 2025 23:57:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Password changed successfully\",\n    \"data\": {\n        \"id\": \"68c1efcd3f0094ac421261be\",\n        \"email\": \"admin@gmail.com\"\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Get All Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/products",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get All Products",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/products",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"products"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "vary",
+									"value": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Sep 2025 23:58:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Success\",\n    \"data\": [\n        {\n            \"id\": \"68c20f3008231672e603db44\",\n            \"date\": \"2024-01-15T00:00:00.000Z\",\n            \"name\": \"Trading Strategy A\",\n            \"monthlyAvg\": 15.5,\n            \"dailyAvg\": 0.5,\n            \"equityStopLoss\": 10,\n            \"avgTradeLength\": \"4 hours\",\n            \"description\": \"Advanced trading strategy\",\n            \"createdAt\": \"2025-09-10T23:52:16.744Z\",\n            \"updatedAt\": \"2025-09-10T23:52:16.744Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Product by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/products/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"products",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "68c20f3008231672e603db44"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token_tba}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"date\": \"2024-01-15T00:00:00Z\",\n  \"name\": \"Trading Strategy A\",\n  \"description\": \"Advanced trading strategy\",\n  \"monthlyAvg\": 15.5,\n  \"dailyAvg\": 0.5,\n  \"equityStopLoss\": 10.0,\n  \"avgTradeLength\": \"4 hours\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/products",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Product",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{auth_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"date\": \"2024-01-15T00:00:00Z\",\n  \"name\": \"Trading Strategy A\",\n  \"description\": \"Advanced trading strategy\",\n  \"monthlyAvg\": 15.5,\n  \"dailyAvg\": 0.5,\n  \"equityStopLoss\": 10.0,\n  \"avgTradeLength\": \"4 hours\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/products",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"products"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "vary",
+									"value": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Sep 2025 23:52:16 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Created successfully\",\n    \"data\": {\n        \"id\": \"68c20f3008231672e603db44\",\n        \"date\": \"2024-01-15T00:00:00.000Z\",\n        \"name\": \"Trading Strategy A\",\n        \"monthlyAvg\": 15.5,\n        \"dailyAvg\": 0.5,\n        \"equityStopLoss\": 10,\n        \"avgTradeLength\": \"4 hours\",\n        \"description\": \"Advanced trading strategy\",\n        \"createdAt\": \"2025-09-10T23:52:16.744Z\",\n        \"updatedAt\": \"2025-09-10T23:52:16.744Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token_tba}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"date\": \"2024-01-15T00:00:00Z\",\n  \"name\": \"Updated Trading Strategy A\",\n  \"description\": \"Updated advanced trading strategy\",\n  \"monthlyAvg\": 16.5,\n  \"dailyAvg\": 0.6,\n  \"equityStopLoss\": 11.0,\n  \"avgTradeLength\": \"5 hours\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/products/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"products",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "68c20f3008231672e603db44"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token_tba}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/products/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"products",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "68c20f3008231672e603db44"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "unathorized",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{auth_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/products/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"products",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "68c20f3008231672e603db44"
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 Sep 2025 00:01:55 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Unauthorized: No token provided\",\n    \"error\": \"Unauthorized\"\n}"
+						},
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{auth_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/products/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"products",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "68c20f3008231672e603db44"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "vary",
+									"value": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 Sep 2025 00:02:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"deleted successfully\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Pricing",
+			"item": [
+				{
+					"name": "Get All Pricing",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/pricing",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"pricing"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get All Pricing",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/pricing",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"pricing"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "vary",
+									"value": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Sep 2025 20:41:44 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Success\",\n    \"data\": [\n        {\n            \"id\": \"68c1e207be5d3f78b18ba79f\",\n            \"equityRange\": \"$0 - $10,000\",\n            \"productType\": \"Basic\",\n            \"subscription\": \"Monthly\",\n            \"basePrice\": \"$99\",\n            \"additionalLicenses\": \"$25 per license\",\n            \"createdAt\": \"2025-09-10T20:39:35.207Z\",\n            \"updatedAt\": \"2025-09-10T20:39:35.207Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Pricing by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/pricing/68c1e207be5d3f78b18ba79f",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"pricing",
+								"68c1e207be5d3f78b18ba79f"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/pricing/68c1e207be5d3f78b18ba79f",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"pricing",
+										"68c1e207be5d3f78b18ba79f"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "vary",
+									"value": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Sep 2025 20:46:59 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Success\",\n    \"data\": {\n        \"id\": \"68c1e207be5d3f78b18ba79f\",\n        \"equityRange\": \"$0 - $10,000\",\n        \"productType\": \"Basic\",\n        \"subscription\": \"Monthly\",\n        \"basePrice\": \"$99\",\n        \"additionalLicenses\": \"$25 per license\",\n        \"createdAt\": \"2025-09-10T20:39:35.207Z\",\n        \"updatedAt\": \"2025-09-10T20:39:35.207Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Pricing",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token_tba}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"equityRange\": \"$0 - $10,000\",\n  \"productType\": \"Basic\",\n  \"subscription\": \"Monthly\",\n  \"basePrice\": \"$99\",\n  \"additionalLicenses\": \"$25 per license\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/pricing",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"pricing"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "succees",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{auth_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"equityRange\": \"$0 - $10,000\",\n  \"productType\": \"Basic\",\n  \"subscription\": \"Monthly\",\n  \"basePrice\": \"$99\",\n  \"additionalLicenses\": \"$25 per license\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/pricing",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"pricing"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "vary",
+									"value": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 Sep 2025 00:03:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Pricing created successfully\",\n    \"data\": {\n        \"id\": \"68c211b848b87cfb1fa4c599\",\n        \"equityRange\": \"$0 - $10,000\",\n        \"productType\": \"Basic\",\n        \"subscription\": \"Monthly\",\n        \"basePrice\": \"$99\",\n        \"additionalLicenses\": \"$25 per license\",\n        \"createdAt\": \"2025-09-11T00:03:04.062Z\",\n        \"updatedAt\": \"2025-09-11T00:03:04.062Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Pricing",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token_tba}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"equityRange\": \"$0 - $15,000\",\n  \"productType\": \"Premium\",\n  \"subscription\": \"Annual\",\n  \"basePrice\": \"$999\",\n  \"additionalLicenses\": \"$50 per license\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/pricing/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"pricing",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "68c211b848b87cfb1fa4c599"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "unathorized",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{auth_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"equityRange\": \"$0 - $15,000\",\n  \"productType\": \"Premium\",\n  \"subscription\": \"Annual\",\n  \"basePrice\": \"$999\",\n  \"additionalLicenses\": \"$50 per license\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/pricing/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"pricing",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "68c211b848b87cfb1fa4c599"
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 Sep 2025 00:03:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Unauthorized: No token provided\",\n    \"error\": \"Unauthorized\"\n}"
+						},
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{auth_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"equityRange\": \"$0 - $15,000\",\n  \"productType\": \"Premium\",\n  \"subscription\": \"Annual\",\n  \"basePrice\": \"$999\",\n  \"additionalLicenses\": \"$50 per license\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/pricing/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"pricing",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "68c211b848b87cfb1fa4c599"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "vary",
+									"value": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 Sep 2025 00:04:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Pricing updated successfully\",\n    \"data\": {\n        \"id\": \"68c211b848b87cfb1fa4c599\",\n        \"equityRange\": \"$0 - $15,000\",\n        \"productType\": \"Premium\",\n        \"subscription\": \"Annual\",\n        \"basePrice\": \"$999\",\n        \"additionalLicenses\": \"$50 per license\",\n        \"createdAt\": \"2025-09-11T00:03:04.062Z\",\n        \"updatedAt\": \"2025-09-11T00:04:04.773Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Pricing",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/pricing/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"pricing",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "PRICING_ID_HERE"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Subscription Rules",
+			"item": [
+				{
+					"name": "Get All Rules",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/subscription-rules",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"subscription-rules"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Rule by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/subscription-rules/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"subscription-rules",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "RULE_ID_HERE"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Rule",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"rule\": \"Maximum 5 active subscriptions per account\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/subscription-rules",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"subscription-rules"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "unauthorized",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{auth_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"rule\": \"Maximum 5 active subscriptions per account\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/subscription-rules",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"subscription-rules"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 Sep 2025 00:04:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Unauthorized: No token provided\",\n    \"error\": \"Unauthorized\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Rule",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"rule\": \"Maximum 10 active subscriptions per account\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/subscription-rules/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"subscription-rules",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "RULE_ID_HERE"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Rule",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/subscription-rules/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"subscription-rules",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "RULE_ID_HERE"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Testimonials",
+			"item": [
+				{
+					"name": "Get All Testimonials",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/testimonials",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"testimonials"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Testimonial by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/testimonials/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"testimonials",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "TESTIMONIAL_ID_HERE"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Testimonial",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token_tba}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"clientName\": \"John Doe\",\n  \"designation\": \"CTO\",\n  \"company\": \"Tech Corp\",\n  \"imageUrl\": \"https://example.com/image.jpg\",\n  \"review\": \"This platform has transformed our trading strategy!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/testimonials",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"testimonials"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Testimonial",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{auth_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"clientName\": \"John Doe\",\n  \"designation\": \"CTO\",\n  \"company\": \"Tech Corp\",\n  \"imageUrl\": \"https://example.com/image.jpg\",\n  \"review\": \"This platform has transformed our trading strategy!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/testimonials",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"testimonials"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "vary",
+									"value": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 Sep 2025 00:09:44 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Created successfully\",\n    \"data\": {\n        \"id\": \"68c21348dbd9abd3ea83848e\",\n        \"clientName\": \"John Doe\",\n        \"designation\": \"CTO\",\n        \"company\": \"Tech Corp\",\n        \"imageUrl\": \"https://example.com/image.jpg\",\n        \"review\": \"This platform has transformed our trading strategy!\",\n        \"createdAt\": \"2025-09-11T00:09:44.730Z\",\n        \"updatedAt\": \"2025-09-11T00:09:44.730Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Testimonial",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"clientName\": \"John Smith\",\n  \"designation\": \"CEO\",\n  \"company\": \"Innovate Inc\",\n  \"imageUrl\": \"https://example.com/new-image.jpg\",\n  \"review\": \"Updated review: This platform continues to exceed expectations!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/testimonials/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"testimonials",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "TESTIMONIAL_ID_HERE"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Testimonial",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/testimonials/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"testimonials",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "TESTIMONIAL_ID_HERE"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "FAQs",
+			"item": [
+				{
+					"name": "Get All FAQs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/faqs",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"faqs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get FAQ by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/faqs/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"faqs",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "FAQ_ID_HERE"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create FAQ",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"question\": \"How do I get started?\",\n  \"answer\": \"Simply sign up for an account and follow our onboarding process.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/faqs",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"faqs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update FAQ",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"question\": \"How do I get started with Trading Hub?\",\n  \"answer\": \"Simply sign up for an account and follow our comprehensive onboarding process.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/faqs/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"faqs",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "FAQ_ID_HERE"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete FAQ",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/faqs/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"faqs",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "FAQ_ID_HERE"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Settings",
+			"item": [
+				{
+					"name": "Get Settings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/settings",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"settings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Settings",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token_tba}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n//   \"privacyPolicy\": \"We respect your privacy and protect your data...\",\n  \"termsAndCondition\": \"By using our service, you agree to these terms\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/settings",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"settings"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:3000",
+			"type": "string"
+		},
+		{
+			"key": "auth_token",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

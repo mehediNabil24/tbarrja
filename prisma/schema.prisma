@@ -1,0 +1,96 @@
+// prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  email     String   @unique
+  password  String
+  role      UserRole @default(ADMIN)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("users")
+}
+
+enum UserRole {
+  ADMIN
+}
+
+model Product {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  date           DateTime
+  name           String
+  monthlyAvg     Float?
+  dailyAvg       Float?
+  equityStopLoss Float?
+  avgTradeLength String?
+  description    String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("products")
+}
+
+model Pricing {
+  id                 String   @id @default(auto()) @map("_id") @db.ObjectId
+  equityRange        String
+  productType        String
+  subscription       String
+  basePrice          String
+  additionalLicenses String
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  @@map("pricings")
+}
+
+model SubscriptionRule {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  rule      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("subscription_rules")
+}
+
+model Testimonial {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  clientName  String
+  designation String
+  company     String
+  imageUrl    String
+  review      String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("testimonials")
+}
+
+model FAQ {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  question  String
+  answer    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("faqs")
+}
+
+model Setting {
+  id                String @id @default(auto()) @map("_id") @db.ObjectId
+  settingId         String @unique @default("SINGLE_SETTINGS_RECORD")
+  privacyPolicy     String @default("")
+  termsAndCondition String @default("")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
