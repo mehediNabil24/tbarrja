@@ -91,10 +91,10 @@ export async function middleware(request: NextRequest) {
 		const tokenData = verifyToken(token);
 
 		// If invalid token, redirect to login
-		// if (!tokenData) {
-		// 	const loginUrl = new URL("/login", request.url);
-		// 	return NextResponse.redirect(loginUrl);
-		// }
+		if (!tokenData) {
+			const loginUrl = new URL("/login", request.url);
+			return NextResponse.redirect(loginUrl);
+		}
 
 		// Token is valid, allow access to dashboard
 		return NextResponse.next();
