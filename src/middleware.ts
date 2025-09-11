@@ -88,7 +88,7 @@ export async function middleware(request: NextRequest) {
 		}
 
 		// Verify token
-		const tokenData = verifyToken(token);
+		const tokenData = await verifyToken(token);
 
 		// If invalid token, redirect to login
 		if (!tokenData) {
