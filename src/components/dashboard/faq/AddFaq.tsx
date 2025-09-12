@@ -1,5 +1,8 @@
 'use client';
+
 import React, { useState } from "react";
+import { toast } from "sonner";
+import { useAddFaqMutation } from "@/redux/service/auth/faq/faqApi";
 
 interface QA {
   question: string;
@@ -8,6 +11,7 @@ interface QA {
 
 const AddQAForm: React.FC = () => {
   const [qaList, setQaList] = useState<QA[]>([{ question: "", answer: "" }]);
+  const [addFaq, { isLoading }] = useAddFaqMutation();
 
   const handleChange = (index: number, field: keyof QA, value: string) => {
     const updated = [...qaList];
@@ -19,15 +23,24 @@ const AddQAForm: React.FC = () => {
     setQaList([...qaList, { question: "", answer: "" }]);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Q&A List:", qaList);
-    alert("Q&A submitted! Check console for data.");
-    setQaList([{ question: "", answer: "" }]); // reset
+
+    try {
+      for (const qa of qaList) {
+        await addFaq(qa).unwrap(); // { question, answer }
+      }
+
+      toast.success("Q&A submitted successfully!");
+      setQaList([{ question: "", answer: "" }]); // reset
+    } catch (err: any) {
+      console.error("Add FAQ error:", err);
+      toast.error(err?.data?.message || "Failed to submit Q&A");
+    }
   };
 
   return (
-    <div className="p-4 rounded-lg   bg-white">
+    <div className="p-4 rounded-lg bg-white">
       <h2 className="text-2xl font-bold text-gray-800 mb-6">
         Add Questions & Answers
       </h2>
@@ -76,9 +89,10 @@ const AddQAForm: React.FC = () => {
         <div className="flex justify-end gap-3 mt-4">
           <button
             type="submit"
-            className="px-4 py-2 bg-yellow-500 text-black rounded-md hover:bg-yellow-600"
+            disabled={isLoading}
+            className="px-4 py-2 bg-yellow-500 text-black rounded-md hover:bg-yellow-600 disabled:opacity-50"
           >
-            Submit Q&A
+            {isLoading ? "Submitting..." : "Submit Q&A"}
           </button>
         </div>
       </form>

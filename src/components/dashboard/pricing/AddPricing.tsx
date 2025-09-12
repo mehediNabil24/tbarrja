@@ -1,6 +1,9 @@
 'use client';
+import { useAddPricingMutation } from "@/redux/service/auth/price/priceApi";
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
+import { toast } from "sonner";
+
 
 type FormData = {
   equityRange: string;
@@ -21,14 +24,21 @@ const AddPricingForm: React.FC = () => {
     },
   });
 
-  const onSubmit = (data: FormData) => {
-    console.log("Pricing Data:", data);
-    alert("Pricing submitted! Check console for data.");
-    reset();
+  const [addPricing, { isLoading }] = useAddPricingMutation();
+
+  const onSubmit = async (data: FormData) => {
+    try {
+      await addPricing(data).unwrap(); // send data to backend
+      toast.success("Pricing added successfully!");
+      reset(); // reset form
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to add pricing.");
+    }
   };
 
   return (
-    <div className="p-4 rounded-lg shadow-sm  ">
+    <div className="p-4 rounded-lg shadow-sm">
       <h2 className="text-2xl font-bold text-gray-800 mb-6">Add Pricing</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
 
@@ -134,9 +144,10 @@ const AddPricingForm: React.FC = () => {
           </button>
           <button
             type="submit"
-            className="px-4 py-2 bg-yellow-500 text-black rounded-md hover:bg-yellow-600"
+            disabled={isLoading} // disable while submitting
+            className={`px-4 py-2 bg-yellow-500 text-black rounded-md hover:bg-yellow-600 ${isLoading ? "opacity-50 cursor-not-allowed" : ""}`}
           >
-            Add Pricing
+            {isLoading ? "Submitting..." : "Add Pricing"}
           </button>
         </div>
       </form>

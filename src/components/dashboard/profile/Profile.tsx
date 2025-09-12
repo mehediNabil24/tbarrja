@@ -1,8 +1,10 @@
 'use client';
 import { useState } from 'react';
-
 import { Input, message } from 'antd';
 import EditNameModal from './EditName';
+import { useUpdatePasswordMutation } from '@/redux/service/auth/profile/profileApi';
+
+
 
 
 interface UserData {
@@ -18,8 +20,8 @@ interface PasswordData {
 
 export default function ProfilePage() {
   const [userData, setUserData] = useState<UserData>({
-    name: 'John Doe',
-    email: 'john.doe@tradinghub.com',
+    name: 'admin',
+    email: 'admin@gmail.com',
   });
 
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -32,6 +34,9 @@ export default function ProfilePage() {
   const [passwordMessage, setPasswordMessage] = useState('');
   const [passwordLoading, setPasswordLoading] = useState(false);
 
+  // RTK Mutation hook
+  const [changePassword] = useUpdatePasswordMutation();
+
   // Handle name update
   const handleNameUpdate = (newName: string) => {
     setUserData({ ...userData, name: newName });
@@ -41,6 +46,7 @@ export default function ProfilePage() {
   const handlePasswordChange = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setPasswordLoading(true);
+    setPasswordMessage('');
 
     if (passwordData.newPassword !== passwordData.confirmPassword) {
       setPasswordMessage("New passwords don't match");
@@ -54,53 +60,54 @@ export default function ProfilePage() {
       return;
     }
 
-    await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API call
+    try {
+      const payload = {
+        currentPassword: passwordData.currentPassword,
+        newPassword: passwordData.newPassword,
+        confirmNewPassword: passwordData.confirmPassword
+      };
 
-    setPasswordMessage("Password changed successfully!");
-    message.success('Password updated successfully!');
+      await changePassword(payload).unwrap(); // call the backend
 
-    setPasswordData({
-      currentPassword: '',
-      newPassword: '',
-      confirmPassword: ''
-    });
+      setPasswordMessage("Password changed successfully!");
+      message.success("Password updated successfully!");
 
-    setPasswordLoading(false);
+      // Reset password form
+      setPasswordData({
+        currentPassword: '',
+        newPassword: '',
+        confirmPassword: ''
+      });
+    } catch (error: any) {
+      setPasswordMessage(error?.data?.message || "Failed to change password");
+      message.error(error?.data?.message || "Failed to change password");
+    } finally {
+      setPasswordLoading(false);
+    }
   };
 
   return (
-    <div className="min-h-screen ">
-   
-
-      <main className="  px-4 sm:px-4  py-4">
+    <div className="min-h-screen">
+      <main className="px-4 sm:px-4 py-4">
         {/* Profile Information */}
-        <div className="bg-white  rounded-lg p-6 mb-8">
+        <div className="bg-white rounded-lg p-6 mb-8">
           <h2 className="text-2xl font-semibold text-gray-800 mb-6">Profile Information</h2>
           <div className="space-y-4">
             <div className="flex items-center justify-between border-b pb-4">
               <div>
-                <p className="text-sm font-medium text-gray-500">Name</p>
+                <p className="text-sm font-medium text-gray-500">Role</p>
                 <p className="text-lg text-gray-900">{userData.name}</p>
               </div>
-              <button
-                onClick={() => setIsEditModalOpen(true)}
-                className="px-4 py-2 !bg-[#FFB833] text-black font-medium rounded-md !hover:bg-yellow-600 transition-colors"
-              >
-                Edit
-              </button>
             </div>
-
             <div className="border-b pb-4">
               <p className="text-sm font-medium text-gray-500">Email Address</p>
               <p className="text-lg text-gray-900">{userData.email}</p>
             </div>
-
-            
           </div>
         </div>
 
         {/* Change Password Section */}
-        <div className="bg-white  rounded-lg p-6">
+        <div className="bg-white rounded-lg p-6">
           <h2 className="text-2xl font-semibold text-gray-800 mb-6">Change Password</h2>
 
           <form onSubmit={handlePasswordChange} className="space-y-4">
@@ -154,7 +161,7 @@ export default function ProfilePage() {
 
             <button
               type="submit"
-              className="w-full px-4 py-2 bg-[#FFB833] text-black !font-semibold rounded-md hover:bg-yellow-600  text-bold transition-colors disabled:opacity-50"
+              className="w-full px-4 py-2 bg-[#FFB833] text-black font-semibold rounded-md hover:bg-yellow-600 transition-colors disabled:opacity-50"
               disabled={passwordLoading}
             >
               {passwordLoading ? 'Changing Password...' : 'Change Password'}

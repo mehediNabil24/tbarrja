@@ -119,7 +119,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children, menu }) => {
           {/* Logout button */}
           <button
             onClick={handleLogout}
-            className="flex items-center gap-2  ml-4"
+            className="flex items-center font-senibold text-lg gap-2  !ml-10"
           >
             <MdLogout size={30} />
             Logout

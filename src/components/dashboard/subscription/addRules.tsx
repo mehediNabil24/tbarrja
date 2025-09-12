@@ -1,8 +1,12 @@
 'use client';
+import { useAddRuleMutation } from "@/redux/service/auth/rule/ruleApi";
 import React, { useState } from "react";
+import { toast } from "sonner";
+
 
 const AddSubscriptionRules: React.FC = () => {
   const [rules, setRules] = useState<string[]>([""]);
+  const [addRule, { isLoading }] = useAddRuleMutation();
 
   const handleChange = (index: number, value: string) => {
     const updatedRules = [...rules];
@@ -14,15 +18,25 @@ const AddSubscriptionRules: React.FC = () => {
     setRules([...rules, ""]);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Subscription Rules:", rules);
-    alert("Subscription rules submitted! Check console for data.");
-    setRules([""]); // reset
+
+    try {
+      for (const rule of rules) {
+        if (rule.trim()) {
+          await addRule({ rule }).unwrap();
+        }
+      }
+      toast.success("Subscription rules added successfully!");
+      setRules([""]); // reset form
+    } catch (err: any) {
+      console.error("Add rule error:", err);
+      toast.error(err?.data?.message || "Failed to add subscription rules.");
+    }
   };
 
   return (
-    <div className="p-4 rounded-lg   bg-white">
+    <div className="p-4 rounded-lg bg-white">
       <h2 className="text-2xl font-bold text-gray-800 mb-6">
         Add Subscription Rules
       </h2>
@@ -55,9 +69,10 @@ const AddSubscriptionRules: React.FC = () => {
         <div className="flex justify-end gap-3 mt-4">
           <button
             type="submit"
-            className="px-4 py-2 bg-[#FFB833]  text-black rounded-md hover:bg-yellow-700"
+            className="px-4 py-2 bg-[#FFB833] text-black rounded-md hover:bg-yellow-700"
+            disabled={isLoading}
           >
-            Add Subscription Rules
+            {isLoading ? "Adding..." : "Add Subscription Rules"}
           </button>
         </div>
       </form>

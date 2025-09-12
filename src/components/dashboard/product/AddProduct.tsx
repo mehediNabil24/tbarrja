@@ -1,7 +1,8 @@
 'use client';
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
-import JoditEditor from "jodit-react";
+import { toast } from "sonner";
+import { useAddProductMutation } from "@/redux/service/auth/product/ProductApi";
 
 type FormData = {
   date: string;
@@ -26,21 +27,39 @@ const AddProductForm: React.FC = () => {
     },
   });
 
-  const onSubmit = (data: FormData) => {
-    console.log("Product Data:", data);
-    alert("Product submitted! Check console for data.");
-    reset();
+  const [addProduct, { isLoading }] = useAddProductMutation();
+
+  const onSubmit = async (data: FormData) => {
+    try {
+      const payload = {
+        date: new Date(data.date).toISOString(),
+        name: data.productName,
+        description: data.description,
+        monthlyAvg: parseFloat(data.monthlyAvg) || 0,
+        dailyAvg: parseFloat(data.dailyAvg) || 0,
+        equityStopLoss: parseFloat(data.equityStopLoss) || 0,
+        avgTradeLength: data.avgTradeLength,
+      };
+
+      await addProduct(payload).unwrap();
+      toast.success("Product added successfully!");
+      reset();
+    } catch (error: any) {
+      toast.error(error?.data?.message || "Failed to add product.");
+    }
   };
 
   return (
-    <div className="p-4 rounded-lg shadow-sm ">
+    <div className="p-4 rounded-lg shadow-sm">
       <h2 className="text-xl font-bold text-gray-800 mb-4">Add New Product</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
 
         {/* Top row: Date + Product Name */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700">Date <span className="text-red-500">*</span></label>
+            <label className="block text-sm font-medium text-gray-700">
+              Date <span className="text-red-500">*</span>
+            </label>
             <Controller
               name="date"
               control={control}
@@ -57,7 +76,9 @@ const AddProductForm: React.FC = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">Product Name <span className="text-red-500">*</span></label>
+            <label className="block text-sm font-medium text-gray-700">
+              Product Name <span className="text-red-500">*</span>
+            </label>
             <Controller
               name="productName"
               control={control}
@@ -142,20 +163,18 @@ const AddProductForm: React.FC = () => {
           </div>
         </div>
 
-        {/* Description */}
+        {/* Description (plain textarea) */}
         <div>
           <label className="block text-sm font-medium text-gray-700">Description</label>
           <Controller
             name="description"
             control={control}
             render={({ field }) => (
-              <JoditEditor
+              <textarea
                 {...field}
-                value={field.value}
-                onBlur={(newContent) => field.onChange(newContent)}
-                onChange={() => {}}
-                config={{ placeholder: "Write product description...", height: 400 }}
-                className="w-full mt-1 border border-gray-300 rounded-md focus-within:ring-2 focus-within:ring-blue-500"
+                placeholder="Enter product description"
+                className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                rows={5}
               />
             )}
           />
@@ -167,14 +186,16 @@ const AddProductForm: React.FC = () => {
             type="button"
             className="px-3 py-1.5 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300"
             onClick={() => reset()}
+            disabled={isLoading}
           >
             Cancel
           </button>
           <button
             type="submit"
             className="px-3 py-1.5 bg-[#FFB833] text-black rounded-md hover:bg-yellow-600"
+            disabled={isLoading}
           >
-            Add Product
+            {isLoading ? "Adding..." : "Add Product"}
           </button>
         </div>
       </form>

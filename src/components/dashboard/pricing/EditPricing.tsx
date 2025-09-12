@@ -1,11 +1,13 @@
 // app/products/PricingEditModal.tsx
 "use client";
 
-import React, { useEffect } from "react";
-import { Modal, Form, Input } from "antd";
+import React, { useEffect, useState } from "react";
+import { Modal, Form, Input, Spin } from "antd";
+import { toast } from "sonner";
+import { useUpdatePricingMutation } from "@/redux/service/auth/price/priceApi";
 
 interface Pricing {
-  id: number;
+  id: string;
   equityRange: string;
   productType: string;
   subscription: string;
@@ -27,6 +29,8 @@ const PricingEditModal: React.FC<Props> = ({
   onSave,
 }) => {
   const [form] = Form.useForm();
+  const [updatePricing, { isLoading }] = useUpdatePricingMutation();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (pricing) {
@@ -34,12 +38,26 @@ const PricingEditModal: React.FC<Props> = ({
     }
   }, [pricing, form]);
 
-  const handleOk = () => {
-    form.validateFields().then((values) => {
-      onSave({ ...pricing, ...values });
-      form.resetFields();
-    });
-  };
+ const handleOk = async () => {
+  try {
+    const values = await form.validateFields();
+    setLoading(true);
+
+    // Corrected: wrap values in 'body'
+    const result = await updatePricing({ id: pricing.id, body: values }).unwrap();
+
+    toast.success("Pricing updated successfully!");
+    onSave(result);
+    form.resetFields();
+    onClose();
+  } catch (err: any) {
+    console.error("Update error:", err);
+    toast.error(err?.data?.message || "Failed to update pricing.");
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   return (
     <Modal
@@ -49,6 +67,7 @@ const PricingEditModal: React.FC<Props> = ({
       onCancel={onClose}
       okText="Save"
       cancelText="Cancel"
+      confirmLoading={loading || isLoading}
     >
       <Form form={form} layout="vertical">
         <Form.Item
@@ -93,6 +112,12 @@ const PricingEditModal: React.FC<Props> = ({
           <Input placeholder="e.g. $400 (3-4 licenses), $300 (5+ licenses)" />
         </Form.Item>
       </Form>
+
+      {loading && (
+        <div className="text-center mt-2">
+          <Spin tip="Updating pricing..." />
+        </div>
+      )}
     </Modal>
   );
 };

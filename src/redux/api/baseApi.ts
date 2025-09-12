@@ -10,7 +10,7 @@ import { logout, setAccessToken } from "../features/auth";
 
 const baseQuery = fetchBaseQuery({
   // baseUrl: "https://pamelam.code-commando.com/api",
-  baseUrl: "https://roof-cost.onrender.com/api/v1",
+  baseUrl: "http://localhost:3000/api",
   // baseUrl: "https://arcroofs.com/api/v1",
   // baseUrl: "http://localhost:3000/api",
   prepareHeaders: (headers, { getState }) => {
@@ -30,7 +30,7 @@ const baseQueryWithReauth: BaseQueryFn<
 > = async (args, api, extraOptions) => {
   let result = await baseQuery(args, api, extraOptions);
 
-  if (result.error && result.error.status === 401) {
+  if (result.error && result.error.status === 403) {
     // Refresh access token
     const refreshResult = await baseQuery(
       {
@@ -59,7 +59,7 @@ const baseQueryWithReauth: BaseQueryFn<
 export const baseApi = createApi({
   reducerPath: "baseApi",
   baseQuery: baseQueryWithReauth,
-  tagTypes: ["auth", "roofing", "window"],
+  tagTypes: ["auth", "roofing", "window","Product","Pricing","Rules","Faq","Privacy"],
   endpoints: () => ({}),
 });
 

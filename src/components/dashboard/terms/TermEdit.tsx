@@ -4,6 +4,9 @@ import React, { useState, useEffect } from "react";
 import { Modal, Button } from "antd";
 import JoditEditor from "jodit-react";
 
+import { toast } from "sonner";
+import { useUpdatePrivacyMutation } from "@/redux/service/auth/privacy/privacyApi";
+
 interface TermsEditModalProps {
   visible: boolean;
   content: string;
@@ -18,6 +21,7 @@ const TermsEditModal: React.FC<TermsEditModalProps> = ({
   onUpdated,
 }) => {
   const [editorContent, setEditorContent] = useState(content);
+  const [updatePrivacy, { isLoading }] = useUpdatePrivacyMutation();
 
   useEffect(() => {
     if (visible) {
@@ -25,26 +29,38 @@ const TermsEditModal: React.FC<TermsEditModalProps> = ({
     }
   }, [visible, content]);
 
+  const handleUpdate = async () => {
+    try {
+      const body = { termsAndCondition: editorContent };
+      const res = await updatePrivacy({ body }).unwrap();
+      toast.success("Terms & Conditions updated successfully");
+      onUpdated(editorContent);
+    } catch (error) {
+      console.error("Update failed:", error);
+      toast.error("Failed to update terms & conditions");
+    }
+  };
+
   return (
     <Modal
-      title="Edit Terms of Use & Condition of Sale"
+      title="Edit Terms of Use & Condition of Salessss"
       open={visible}
       onCancel={onClose}
       width={900}
       footer={[
-        <Button key="cancel" onClick={onClose}>
+        <Button key="cancel" onClick={onClose} disabled={isLoading}>
           Cancel
         </Button>,
         <Button
           key="update"
           type="primary"
-          onClick={() => onUpdated(editorContent)}
+          loading={isLoading}
+          onClick={handleUpdate}
         >
           Update
         </Button>,
       ]}
     >
-      {/* ✅ Jodit Editor Box Only */}
       <JoditEditor
         value={editorContent}
         onChange={(newContent) => setEditorContent(newContent)}

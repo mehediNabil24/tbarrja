@@ -1,13 +1,16 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Modal, Input } from "antd";
+import { Modal, Input, Spin } from "antd";
+import { toast } from "sonner";
+import { useUpdateRuleMutation } from "@/redux/service/auth/rule/ruleApi";
+
 
 interface SubscriptionEditModalProps {
   visible: boolean;
-  rule: { id: number; rule: string };
+  rule: { id: string; rule: string };
   onClose: () => void;
-  onSave: (updated: { id: number; rule: string }) => void;
+  onSave: (updated: { id: string; rule: string }) => void;
 }
 
 const SubscriptionEditModal: React.FC<SubscriptionEditModalProps> = ({
@@ -17,14 +20,24 @@ const SubscriptionEditModal: React.FC<SubscriptionEditModalProps> = ({
   onSave,
 }) => {
   const [currentRule, setCurrentRule] = useState(rule.rule);
+  const [updateRule, { isLoading }] = useUpdateRuleMutation();
 
   useEffect(() => {
     setCurrentRule(rule.rule);
   }, [rule]);
 
-  const handleSave = () => {
+  const handleSave = async () => {
     if (!currentRule.trim()) return;
-    onSave({ ...rule, rule: currentRule });
+
+    try {
+      const result = await updateRule({ id: rule.id, body: { rule: currentRule } }).unwrap();
+      toast.success("Subscription rule updated successfully!");
+      onSave(result); // update parent state
+      onClose();
+    } catch (err: any) {
+      console.error("Update rule error:", err);
+      toast.error(err?.data?.message || "Failed to update subscription rule.");
+    }
   };
 
   return (
@@ -35,7 +48,10 @@ const SubscriptionEditModal: React.FC<SubscriptionEditModalProps> = ({
       onOk={handleSave}
       okText={rule.id ? "Update" : "Add"}
       cancelText="Cancel"
-      okButtonProps={{ style: { backgroundColor: "#FFA600", border: "none" } }}
+      okButtonProps={{
+        style: { backgroundColor: "#FFA600", border: "none" },
+        disabled: isLoading,
+      }}
     >
       <label className="block text-sm font-medium text-gray-700 mb-2">
         Subscription Rule <span className="text-red-500">*</span>
@@ -45,6 +61,11 @@ const SubscriptionEditModal: React.FC<SubscriptionEditModalProps> = ({
         onChange={(e) => setCurrentRule(e.target.value)}
         placeholder="Enter subscription rule"
       />
+      {isLoading && (
+        <div className="text-center mt-2">
+          <Spin tip="Updating rule..." />
+        </div>
+      )}
     </Modal>
   );
 };

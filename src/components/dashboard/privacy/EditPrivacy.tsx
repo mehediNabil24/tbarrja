@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Button } from "antd";
 import JoditEditor from "jodit-react";
+import { useUpdatePrivacyMutation } from "@/redux/service/auth/privacy/privacyApi"; // <-- your API hook
+import { toast } from "sonner";
 
 interface PrivacyEditModalProps {
   visible: boolean;
@@ -18,12 +20,26 @@ const PrivacyEditModal: React.FC<PrivacyEditModalProps> = ({
   onUpdated,
 }) => {
   const [editorContent, setEditorContent] = useState(content);
+  const [updatePrivacy, { isLoading }] = useUpdatePrivacyMutation(); // <-- RTK mutation hook
 
   useEffect(() => {
     if (visible) {
       setEditorContent(content);
     }
   }, [visible, content]);
+
+const handleUpdate = async () => {
+  try {
+    const payload = { privacyPolicy: editorContent };
+    const res = await updatePrivacy({ body: payload }).unwrap(); // <-- wrapped in {body: ...}
+    toast.success("Privacy Policy updated successfully");
+    onUpdated(editorContent);
+    onClose();
+  } catch (error: any) {
+    toast.error(error?.data?.message || "Failed to update Privacy Policy");
+  }
+};
+
 
   return (
     <Modal
@@ -38,13 +54,13 @@ const PrivacyEditModal: React.FC<PrivacyEditModalProps> = ({
         <Button
           key="update"
           type="primary"
-          onClick={() => onUpdated(editorContent)}
+          loading={isLoading}
+          onClick={handleUpdate}
         >
           Update
         </Button>,
       ]}
     >
-      {/* Jodit Editor Box Only */}
       <JoditEditor
         value={editorContent}
         onChange={(newContent) => setEditorContent(newContent)}
