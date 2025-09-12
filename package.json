@@ -12,7 +12,8 @@
     "start": "next start",
     "lint": "next lint",
     "seed": "npx prisma db seed",
-    "seed:dev": "tsx prisma/seed.ts"
+    "seed:dev": "tsx prisma/seed.ts",
+    "postinstall": "npx prisma generate"
   },
   "dependencies": {
     "@ant-design/icons": "^6.0.0",
