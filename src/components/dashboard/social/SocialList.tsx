@@ -27,12 +27,12 @@ const SocialIconList: React.FC = () => {
 
   const columns = [
     { title: "Sl.", render: (_: any, __: any, index: number) => index + 1 },
-    {
-      title: "Icon",
-      render: (_: any, record: typeof initialSocials[0]) => (
-        <img src={record.icon} alt={record.name} className="w-8 h-8 rounded-full" />
-      ),
-    },
+    // {
+    //   title: "Icon",
+    //   render: (_: any, record: typeof initialSocials[0]) => (
+    //     <img src={record.icon} alt={record.name} className="w-8 h-8 rounded-full" />
+    //   ),
+    // },
     { title: "Social Name", dataIndex: "name" },
     { title: "Address", dataIndex: "url" },
     {
@@ -42,7 +42,7 @@ const SocialIconList: React.FC = () => {
           <Button
             icon={<EditOutlined />}
             type="primary"
-            style={{ backgroundColor: "#FFA600", border: "none" }}
+            style={{ backgroundColor: "#FFA600", border: "none", color: 'black' }}
             onClick={() => {
               setSelectedSocial(record);
               setEditModalVisible(true);

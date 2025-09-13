@@ -32,13 +32,13 @@ const InvestorAddressList: React.FC = () => {
           <Button
             icon={<EditOutlined />}
             type="primary"
-            style={{ backgroundColor: "#FFA600", border: "none" }}
+            style={{ backgroundColor: "#FFA600", border: "none" ,color:"black" }}
             onClick={() => {
               setSelectedInvestor(record);
               setEditModalVisible(true);
             }}
           >
-            Edit
+            
           </Button>
         </Space>
       ),

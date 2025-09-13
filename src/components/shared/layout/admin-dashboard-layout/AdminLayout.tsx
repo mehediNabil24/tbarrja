@@ -4,7 +4,7 @@ import AdminLayout from "@/components/shared/layout/Layout";
 
 import Link from "next/link";
 import { ReactNode } from "react";
-import { LuBookOpen, LuDollarSign, LuFile, LuList, LuMessageCircle, LuPen, LuPlus, LuScroll, LuShield, LuShoppingCart, LuStar, LuUser } from "react-icons/lu";
+import { LuBookOpen, LuDollarSign, LuFacebook, LuFile, LuList, LuLogIn, LuMessageCircle, LuPen, LuPlus, LuScroll, LuShield, LuShoppingCart, LuStar, LuUser } from "react-icons/lu";
 import { getItem, MenuItem } from "../Layout";
 
 const navItems: MenuItem[] = [
@@ -76,12 +76,12 @@ const navItems: MenuItem[] = [
   getItem(
     <Link href="/dashboard/social">Social Addresses </Link>,
     "/dashboard/social",
-    <LuShield />
+    <LuFacebook />
   ),
   getItem(
     <Link href="/dashboard/investor">Investor login </Link>,
     "/dashboard/investor",
-    <LuShield />
+    <LuLogIn />
   ),
 ];
 
