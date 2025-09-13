@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 import { useAddRuleMutation } from "@/redux/service/auth/rule/ruleApi";
 import React, { useState } from "react";

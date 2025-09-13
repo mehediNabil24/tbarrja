@@ -13,13 +13,15 @@ const baseQuery = fetchBaseQuery({
   baseUrl: "http://localhost:3000/api",
   // baseUrl: "https://arcroofs.com/api/v1",
   // baseUrl: "http://localhost:3000/api",
-  prepareHeaders: (headers, { getState }) => {
-    const token = (getState() as RootState).auth?.accessToken;
-    if (token) {
-      headers.set("Authorization", `${token}`);
-    }
-    return headers;
-  },
+ prepareHeaders: (headers, { getState }) => {
+  const token = (getState() as RootState).auth?.accessToken;
+  console.log(token, "token");
+  if (token) {
+    headers.set("Authorization", `Bearer ${token}`);
+  }
+  return headers;
+},
+
   credentials: "include", // ✅ includes HttpOnly cookies like refresh token
 });
 

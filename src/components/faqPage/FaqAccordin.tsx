@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { Plus, Minus } from "lucide-react"
-import bgImage from "@/assets/bg-faq.png"
+import bgImage from "@/assets/service.png"
 
 const faqData = [
   {
@@ -66,7 +66,12 @@ export default function FaqAccordion() {
 
      <div 
       className="relative bg-cover bg-no-repeat"
-      style={{ backgroundImage: `url(${bgImage.src})` }}
+        style={{
+        backgroundImage: `url(${bgImage.src})`,
+        backgroundSize: "100% 100%", // take full width & height
+        backgroundPosition: "center", 
+        // optional: center the image
+      }}
     >
       {/* Optional overlay */}
       <div className="absolute inset-0 bg-black/30"></div>
@@ -88,14 +93,14 @@ export default function FaqAccordion() {
           {faqData.map((item) => (
             <div
               key={item.id}
-              className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-lg overflow-hidden"
+              className="bg-slate-900/20  backdrop-blur-sm border border-slate-700/20 rounded-lg overflow-hidden"
             >
               <button
                 onClick={() => toggleItem(item.id)}
-                className="w-full flex items-center justify-between p-6 text-left hover:bg-slate-700/30 transition-colors"
+                className="w-full flex items-center justify-between p-6 text-left hover:bg-slate-800/20 transition-colors"
               >
                 <div className="flex items-center gap-6">
-                  <span className="text-gray-400 font-mono text-lg font-medium">{item.id}</span>
+                  <span className={`w-10 h-10 md:w-10 md:h-10 flex items-center justify-center rounded-md bg-gradient-to-b from-[#242424] to-transparent  text-sm font-bold shadow-lg ${openItem === item.id ? "text-pink-400" : "text-white"}`}>{item.id}</span>
                   <h3 className={`text-lg font-semibold ${openItem === item.id ? "text-pink-400" : "text-white"}`}>
                     {item.question}
                   </h3>

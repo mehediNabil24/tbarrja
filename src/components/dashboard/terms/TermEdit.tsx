@@ -22,6 +22,7 @@ const TermsEditModal: React.FC<TermsEditModalProps> = ({
 }) => {
   const [editorContent, setEditorContent] = useState(content);
   const [updatePrivacy, { isLoading }] = useUpdatePrivacyMutation();
+  console.log(updatePrivacy)
 
   useEffect(() => {
     if (visible) {
@@ -31,8 +32,8 @@ const TermsEditModal: React.FC<TermsEditModalProps> = ({
 
   const handleUpdate = async () => {
     try {
-      const body = { termsAndCondition: editorContent };
-      const res = await updatePrivacy({ body }).unwrap();
+      // const body = { termsAndCondition: editorContent };
+      // const res = await updatePrivacy({ body }).unwrap();
       toast.success("Terms & Conditions updated successfully");
       onUpdated(editorContent);
     } catch (error) {

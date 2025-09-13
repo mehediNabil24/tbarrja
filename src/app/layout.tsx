@@ -16,9 +16,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "ARC (Allied Restoration Contractors)",
+  title: "THE TRADING HUB",
   description:
-    "Award Winning Service Allied Restoration Contractors, Repairs & Replacement",
+    "Award Winning Trading THE TRADING HUB",
 };
 
 export default function RootLayout({

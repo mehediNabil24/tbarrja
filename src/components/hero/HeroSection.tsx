@@ -10,15 +10,15 @@ export default function HeroSection() {
         {/* Welcome Badge */}
         <div className="text-center mb-8">
           <div className="inline-flex items-center gap-2 mb-6">
-            <div className="h-px bg-gradient-to-r from-transparent via-purple-600 to-transparent w-16" />
+            <div className="h-[3px] bg-gradient-to-r from-transparent via-[#570648] to-transparent w-44" />
             <span className="text-cyan-400 text-sm font-medium tracking-wider uppercase">WELCOME</span>
-            <div className="h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent w-16" />
+            <div className="h-[3px] bg-gradient-to-r from-transparent via-[#570648] to-transparent w-44" />
           </div>
         </div>
 
         {/* Main Heading */}
         <div className="text-center mb-6">
-          <h1 className="text-4xl md:text-[60px] font-bold text-white leading-tight mb-4">
+          <h1 className="text-4xl md:text-[48px] xl:text-[55px]  font-bold text-white leading-tight mb-4">
             Elevating{" "}
             <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-purple-600 bg-clip-text text-transparent">
               Trading
@@ -54,7 +54,7 @@ export default function HeroSection() {
 
 
         {/* Dashboard Mockup replaced by Image */}
-        <div className="max-w-6xl mx-auto broder border-purple-300 border-x-[12px] border-t-[12px] rounded-t-[32px]">
+        <div className="max-w-6xl mx-auto broder border-[#a280cb] border-x-[12px] border-t-[12px] rounded-t-[32px]">
   <Image
     src={image1}
     alt="Dashboard Mockup"

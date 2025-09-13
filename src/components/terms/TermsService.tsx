@@ -1,12 +1,17 @@
 
-import bgImage from "@/assets/bg-faq.png"
+import bgImage from "@/assets/service.png"
 
 export default function TermsOfService() {
   return (
 
      <div 
       className="relative bg-cover bg-no-repeat"
-      style={{ backgroundImage: `url(${bgImage.src})` }}
+       style={{
+        backgroundImage: `url(${bgImage.src})`,
+        backgroundSize: "100% 100%", // take full width & height
+        backgroundPosition: "center", 
+        // optional: center the image
+      }}
     >
       {/* Optional overlay */}
       <div className="absolute inset-0 bg-black/30"></div>

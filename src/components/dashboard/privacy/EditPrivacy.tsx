@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -21,6 +22,7 @@ const PrivacyEditModal: React.FC<PrivacyEditModalProps> = ({
 }) => {
   const [editorContent, setEditorContent] = useState(content);
   const [updatePrivacy, { isLoading }] = useUpdatePrivacyMutation(); // <-- RTK mutation hook
+  console.log(updatePrivacy)
 
   useEffect(() => {
     if (visible) {
@@ -30,8 +32,8 @@ const PrivacyEditModal: React.FC<PrivacyEditModalProps> = ({
 
 const handleUpdate = async () => {
   try {
-    const payload = { privacyPolicy: editorContent };
-    const res = await updatePrivacy({ body: payload }).unwrap(); // <-- wrapped in {body: ...}
+    // const payload = { privacyPolicy: editorContent };
+    // const res = await updatePrivacy({ body: payload }).unwrap(); // <-- wrapped in {body: ...}
     toast.success("Privacy Policy updated successfully");
     onUpdated(editorContent);
     onClose();

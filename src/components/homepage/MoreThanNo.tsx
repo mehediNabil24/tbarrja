@@ -50,19 +50,38 @@ export default function TradingPlatform() {
                 At THE TRADING HUB, we believe trading is more than charts and technicalities. It&apos;s a mission.
               </p>
 
-              <div className="space-y-3 sm:space-y-3">
-                {["empower", "evolve", "guide and grow"].map((mission, idx) => (
-                  <div key={idx} className="flex items-start gap-3">
-                    <div className="w-1 h-1 bg-white rounded-full mt-2 flex-shrink-0"></div>
-                    <p className="text-white font-medium text-base sm:text-lg lg:text-[20px]">
-                      A Mission to{" "}
-                      <span className="bg-gradient-to-t from-[#4DD0FF] to-[#FF00A8] bg-clip-text text-transparent">
-                        {mission}
-                      </span>
-                    </p>
-                  </div>
-                ))}
-              </div>
+             <div className="space-y-3 sm:space-y-3">
+  <div className="flex items-start gap-3">
+    <div className="w-1 h-1 bg-white rounded-full mt-2 flex-shrink-0"></div>
+    <p className="text-white font-medium text-base sm:text-lg lg:text-[20px]">
+      A Mission to&nbsp;
+      <span className="bg-gradient-to-t from-[#4DD0FF] to-[#FF00A8] bg-clip-text text-transparent">
+        empower
+      </span>
+    </p>
+  </div>
+
+  <div className="flex items-start gap-3">
+    <div className="w-1 h-1 bg-white rounded-full mt-2 flex-shrink-0"></div>
+    <p className="text-white font-medium text-base sm:text-lg lg:text-[20px]">
+      A Mission to&nbsp;
+      <span className="bg-gradient-to-t from-[#4DD0FF] to-[#FF00A8] bg-clip-text text-transparent">
+        evolve
+      </span>
+    </p>
+  </div>
+
+  <div className="flex items-start gap-3">
+    <div className="w-1 h-1 bg-white rounded-full mt-2 flex-shrink-0"></div>
+    <p className="text-white font-medium text-base sm:text-lg lg:text-[20px]">
+      A Mission to&nbsp;
+      <span className="bg-gradient-to-t from-[#4DD0FF] to-[#FF00A8] bg-clip-text text-transparent">
+        guide and grow
+      </span>, the capital that matters most to you.
+    </p>
+  </div>
+</div>
+
 
               <p className="text-gray-300 leading-relaxed text-base sm:text-lg lg:text-[20px]">
                 We’re here to level the playing field. By democratizing access to intelligent, self-directed trading systems, The TRADING Hub is making the future of finance more inclusive, and far more powerful.

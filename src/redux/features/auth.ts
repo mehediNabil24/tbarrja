@@ -50,9 +50,13 @@ const authSlice = createSlice({
     logout(state) {
       state.user = null;
       state.accessToken = null;
-      // Remove the "roll" cookie
-      document.cookie = "roll=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
-      window.location.href = "/";
+      state.refreshToken = null;
+      document.cookie =
+        "token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+      document.cookie =
+        "refreshToken=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+      // redirect user
+      window.location.href = "/login";
     },
   },
 });

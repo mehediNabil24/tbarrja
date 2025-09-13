@@ -43,7 +43,8 @@ const FaqList: React.FC = () => {
     });
   };
 
-  const handleUpdate = (updated: FAQ) => {
+  const handleUpdate = (_: FAQ) => {
+    console.log(_)
     setEditModalVisible(false);
     setSelectedFaq(null);
     // You can optionally update local state here,

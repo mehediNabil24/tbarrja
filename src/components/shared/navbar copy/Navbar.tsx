@@ -26,7 +26,7 @@ const Navbar = () => {
   ];
 
   return (
-    <div className="w-full bg-transparent text-white py-5 md:py-6 lg:py-7 top-0 z-50">
+    <div  className="w-full bg-transparent text-white py-5 md:py-6 lg:py-7 top-0 z-50">
       <div className="container mx-auto flex justify-between items-center px-4">
         {/* Logo */}
         <Link href="/">
@@ -44,7 +44,7 @@ const Navbar = () => {
         </Link>
 
         {/* Menu links */}
-        <div className="hidden lg:flex gap-4 xl:gap-6 text-[13px] xl:text-[14px] font-medium">
+        <div translate="no" className="hidden lg:flex gap-4 xl:gap-6 text-[13px] xl:text-[14px] font-medium">
           {navItems.map((item) => {
             const isActive =
               pathname === item.href || pathname === item.href.replace("/#", "");

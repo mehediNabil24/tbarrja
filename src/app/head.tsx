@@ -2,7 +2,7 @@
 export default function Head() {
   return (
     <>
-      <title>Domain Name</title>
+      <title>THE TRADING HUB</title>
       <meta name="description" content="Website slogan" />
     
        <link href="https://fonts.cdnfonts.com/css/termina-test" rel="stylesheet" />

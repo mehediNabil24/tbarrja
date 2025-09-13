@@ -1,6 +1,8 @@
 import Image from "next/image";
 import image1 from "@/assets/bg-4.png";
 import image2 from "@/assets/Rectangle 161124012 (3).png";
+import image3 from "@/assets/security 1.png";
+
 
 export default function WhyChooseUs() {
   return (
@@ -26,7 +28,7 @@ export default function WhyChooseUs() {
                 </h2>
               </div>
 
-               <div className="lg:hidden relative">
+              <div className="lg:hidden relative">
                 <Image
                   src={image2}
                   alt="THE TRADING HUB Logo"
@@ -37,15 +39,25 @@ export default function WhyChooseUs() {
               </div>
 
               <p className="text-gray-300 text-base sm:text-lg lg:text-[20px] leading-relaxed sm:leading-relaxed lg:leading-relaxed">
-                Because we&apos;re not like the others — and that&apos;s by design. After experiencing firsthand how most trading platforms overpromise and underdeliver, we set out to build something different. Not just another platform with a fancy name only. But a platform that&apos;s truly intelligent, fully automated, and built to perform without interruptions, not just backtests.
+                Because we&apos;re not like the others — and that&apos;s by
+                design. After experiencing firsthand how most trading platforms
+                overpromise and underdeliver, we set out to build something
+                different. Not just another platform with a fancy name only. But
+                a platform that&apos;s truly intelligent, fully automated, and
+                built to perform without interruptions, not just backtests.
               </p>
 
               <p className="text-gray-300 text-base sm:text-lg lg:text-[20px] leading-relaxed">
-                At THE TRADING HUB, our commitment goes beyond automation. We stand for transparency, innovation, and real support for our traders. We constantly adapt to the fast-moving financial landscape, leveraging cutting-edge AI to keep you ahead of the curve.
+                At THE TRADING HUB, our commitment goes beyond automation. We
+                stand for transparency, innovation, and real support for our
+                traders. We constantly adapt to the fast-moving financial
+                landscape, leveraging cutting-edge AI to keep you ahead of the
+                curve.
               </p>
 
               <p className="text-gray-300 text-base sm:text-lg lg:text-[20px] leading-relaxed">
-                That&apos;s why traders choose us — for a smarter, safer, and more modern way to trade.
+                That&apos;s why traders choose us — for a smarter, safer, and
+                more modern way to trade.
               </p>
 
               <p className="text-gray-300 text-base sm:text-lg lg:text-[20px] leading-relaxed">
@@ -130,8 +142,12 @@ export default function WhyChooseUs() {
                 className="flex gap-3 sm:gap-4 p-4 sm:p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10"
               >
                 <div className="flex-shrink-0">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 flex items-center justify-center">
-                    <span className="text-white font-bold text-base sm:text-lg">C</span>
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-r from-[#5d556f] to-[#5d556f] flex items-center justify-center overflow-hidden">
+                    <Image
+                      src={image3}
+                      alt="Icon"
+                      className="w-5 h-5 sm:w-6 sm:h-6 object-contain"
+                    />
                   </div>
                 </div>
                 <div className="space-y-1 sm:space-y-2">

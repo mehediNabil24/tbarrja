@@ -2,7 +2,7 @@
 "use client";
 
 import React, { ReactNode, useState } from "react";
-import {  useRouter } from "next/navigation";
+// import {  useRouter } from "next/navigation";
 
 import logo from "@/assets/logo/Asset 3 1.png";
 import { MenuOutlined } from "@ant-design/icons";
@@ -12,6 +12,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { MdLogout } from "react-icons/md";
+import { useDispatch } from "react-redux";
+import { logout } from "@/redux/features/auth";
 
 const { Header, Content, Sider } = Layout;
 
@@ -43,7 +45,8 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children, menu }) => {
   // } = theme.useToken();
 
   // const pathname = usePathname();
-  const router = useRouter();
+  // const router = useRouter();
+  const dispatch = useDispatch();
 
   const [selectedKey, setSelectedKey] = useState("/dashboard");
 
@@ -52,10 +55,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children, menu }) => {
   };
 
   const handleLogout = () => {
-    // Clear session or tokens
-    localStorage.removeItem("token");
-    // Redirect to login page
-    router.push("/login");
+    dispatch(logout()); // ✅ no arguments
   };
 
   return (
@@ -118,7 +118,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children, menu }) => {
 
           {/* Logout button */}
           <button
-            onClick={handleLogout}
+             onClick={() => { handleLogout() }}
             className="flex items-center font-senibold text-lg gap-2  !ml-10"
           >
             <MdLogout size={30} />

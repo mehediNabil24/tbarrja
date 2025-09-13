@@ -8,8 +8,8 @@ import type { Metadata } from "next";
 import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
-  title: "Domain Name",
-  description: "Website slogan",
+  title: "THE TRADING HUB",
+  description: "Best trading company in the world",
 };
 
 export default function RootLayout({

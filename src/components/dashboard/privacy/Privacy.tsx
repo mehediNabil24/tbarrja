@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { Button, Spin } from "antd";
 import { EditOutlined } from "@ant-design/icons";
-import TermsEditModal from "../terms/TermEdit";
+// import TermsEditModal from "../terms/TermEdit";
 import { useGetPrivacyQuery } from "@/redux/service/auth/privacy/privacyApi";
 import PrivacyEditModal from "./EditPrivacy";
 

@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 import { useState } from 'react';
-import { Input, message } from 'antd';
+import { Input } from 'antd';
 import EditNameModal from './EditName';
 import { useUpdatePasswordMutation } from '@/redux/service/auth/profile/profileApi';
+import { toast } from 'sonner';
 
 
 
@@ -43,48 +45,55 @@ export default function ProfilePage() {
   };
 
   // Handle password change
-  const handlePasswordChange = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setPasswordLoading(true);
-    setPasswordMessage('');
+const handlePasswordChange = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  setPasswordLoading(true);
+  setPasswordMessage('');
 
-    if (passwordData.newPassword !== passwordData.confirmPassword) {
-      setPasswordMessage("New passwords don't match");
-      setPasswordLoading(false);
-      return;
-    }
+  if (passwordData.newPassword !== passwordData.confirmPassword) {
+    setPasswordMessage("New passwords don't match");
+    toast.error("New passwords don't match");
+    setPasswordLoading(false);
+    return;
+  }
 
-    if (passwordData.newPassword.length < 8) {
-      setPasswordMessage("New password must be at least 8 characters");
-      setPasswordLoading(false);
-      return;
-    }
+  if (passwordData.newPassword.length < 4) {
+    setPasswordMessage("New password must be at least 5 characters");
+    toast.error("New password must be at least 5 characters");
+    setPasswordLoading(false);
+    return;
+  }
 
-    try {
-      const payload = {
-        currentPassword: passwordData.currentPassword,
-        newPassword: passwordData.newPassword,
-        confirmNewPassword: passwordData.confirmPassword
-      };
+  try {
+    const payload = {
+      currentPassword: passwordData.currentPassword,
+      newPassword: passwordData.newPassword,
+      confirmNewPassword: passwordData.confirmPassword,
+    };
 
-      await changePassword(payload).unwrap(); // call the backend
+    const res = await changePassword(payload).unwrap(); // call the backend
 
-      setPasswordMessage("Password changed successfully!");
-      message.success("Password updated successfully!");
+    // ✅ use message from backend
+    const successMsg = res?.message || "Password changed successfully";
+    setPasswordMessage(successMsg);
+    toast.success(successMsg);
 
-      // Reset password form
-      setPasswordData({
-        currentPassword: '',
-        newPassword: '',
-        confirmPassword: ''
-      });
-    } catch (error: any) {
-      setPasswordMessage(error?.data?.message || "Failed to change password");
-      message.error(error?.data?.message || "Failed to change password");
-    } finally {
-      setPasswordLoading(false);
-    }
-  };
+    // Reset password form
+    setPasswordData({
+      currentPassword: '',
+      newPassword: '',
+      confirmPassword: '',
+    });
+  } catch (error: any) {
+    // ✅ show backend error message
+    const errorMsg = error?.data?.message || error?.data?.details || "Failed to change password";
+    setPasswordMessage(errorMsg);
+    toast.error(errorMsg);
+  } finally {
+    setPasswordLoading(false);
+  }
+};
+
 
   return (
     <div className="min-h-screen">

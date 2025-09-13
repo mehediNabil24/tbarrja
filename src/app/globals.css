@@ -129,6 +129,61 @@ body {
     overflow: hidden !important;
 }
 
+/* Hide the Google Translate tooltip that shows on text selection */
+#goog-gt-tt,
+.goog-tooltip,
+.goog-tooltip:hover {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+/* Hide the Google Translate frame elements */
+.goog-te-balloon-frame,
+.goog-te-banner-frame,
+.goog-te-menu-frame,
+.goog-te-spinner-pos {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Hide the 'Rate this translation' popup */
+.VIpgJd-ZVi9od-l4eHX-hSRGPd {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Prevent layout shift from banner */
+body {
+  top: 0 !important;
+}
+
+.notranslate {
+  translate: no;
+}
+
+
+
+@media (max-width: 1024px) { /* tablet and mobile */
+  .translate-responsive {
+    width: 100% !important;
+    text-align: center; /* centers the text */
+  }
+
+  /* optional: center the inner flex content if needed */
+  .translate-responsive > div {
+    justify-content: center !important;
+  }
+}
+
+
+
+
+
 
 
 

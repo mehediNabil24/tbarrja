@@ -73,6 +73,16 @@ const navItems: MenuItem[] = [
     "/dashboard/privacy",
     <LuShield />
   ),
+  getItem(
+    <Link href="/dashboard/social">Social Addresses </Link>,
+    "/dashboard/social",
+    <LuShield />
+  ),
+  getItem(
+    <Link href="/dashboard/investor">Investor login </Link>,
+    "/dashboard/investor",
+    <LuShield />
+  ),
 ];
 
 const SuperAdminLayout = ({ children }: { children: ReactNode }) => {

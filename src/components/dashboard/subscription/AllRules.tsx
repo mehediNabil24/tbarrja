@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Table, Space, Modal, Button, Pagination, message } from "antd";
+import { Table, Space, Modal, Button,  message } from "antd";
 import { EditOutlined, DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 import SubscriptionEditModal from "./RuleModal";
 import { useRouter } from "next/navigation";
@@ -21,7 +21,7 @@ const SubscriptionList: React.FC = () => {
   const [selectedRule, setSelectedRule] = useState<SubscriptionRule | null>(null);
   const [isEditModalVisible, setEditModalVisible] = useState(false);
   const [searchText] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage] = useState(1);
   const pageSize = 5;
 
   // API hooks
@@ -49,6 +49,7 @@ const SubscriptionList: React.FC = () => {
           refetch(); // Refetch the rules after deletion
         } catch (error) {
           message.error("Failed to delete rule");
+          console.log(error);
         }
       },
     });

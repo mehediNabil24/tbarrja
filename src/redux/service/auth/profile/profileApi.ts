@@ -9,14 +9,18 @@ const ProfileApi = baseApi.injectEndpoints({
 
 
     // Update Admin API (PATCH)
-    updatePassword: builder.mutation({
-      query: () => ({
-        url: `/auth/change-password`,
-        method: 'PUT',
-        
-      }),
-      invalidatesTags: ['Pricing'],
-    }),
+   updatePassword: builder.mutation({
+  query: (body) => ({
+    url: '/auth/change-password',
+    method: 'PUT',
+    body, // <-- send the payload
+    headers: {
+      'Content-Type': 'application/json', // ensure backend parses JSON
+    },
+  }),
+  invalidatesTags: ['Pricing'],
+}),
+
 
 
 

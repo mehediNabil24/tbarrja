@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import 'antd/dist/reset.css';
@@ -23,10 +24,11 @@ const PricingList: React.FC = () => {
   const [pricing, setPricing] = useState<Pricing[]>([]);
   const [selectedPricing, setSelectedPricing] = useState<Pricing | null>(null);
   const [isEditModalVisible, setEditModalVisible] = useState(false);
-  const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [_, setDeletingId] = useState<string | null>(null);
+  console.log(_)
 
   const { data, isLoading, isError } = useGetPricingQuery({});
-  const [deletePricing, { isLoading: isDeleting }] = useDeletePricingMutation();
+  const [deletePricing, ] = useDeletePricingMutation();
 
   useEffect(() => {
     if (data?.success) {

@@ -1,8 +1,13 @@
 "use client";
-import { Facebook, Instagram, Twitter, Youtube, Linkedin } from "lucide-react";
+
 import Image from "next/image";
 import logo from "@/assets/logo/Asset 3 1.png";
 import Link from "next/link";
+import image1 from "@/assets/3.png"
+import image2 from "@/assets/4.png"
+import image3 from "@/assets/5.png"
+import image4 from "@/assets/6.png"
+import image5 from "@/assets/Social media.png"
 
 export default function Footer() {
   return (
@@ -22,18 +27,24 @@ export default function Footer() {
             </p>
 
             {/* Social Media Icons */}
-            <div className="flex gap-3 sm:gap-4 flex-wrap">
-              {[Facebook, Instagram, Twitter, Youtube, Linkedin].map(
-                (Icon, idx) => (
-                  <div
-                    key={idx}
-                    className="w-10 h-10 bg-slate-600 rounded-full flex items-center justify-center hover:bg-slate-500 transition-colors cursor-pointer"
-                  >
-                    <Icon className="w-5 h-5 text-gray-300" />
-                  </div>
-                )
-              )}
-            </div>
+          <div className="flex gap-3 sm:gap-4 flex-wrap">
+  <div className="w-10 h-10 bg-slat rounded-full flex items-center justify-center  transition-colors cursor-pointer">
+    <Image src={image1} alt="Facebook" className="w-10 h-10" />
+  </div>
+  <div className="w-10 h-10  rounded-full flex items-center justify-center  transition-colors cursor-pointer">
+    <Image src={image2} alt="Instagram" className="w-10 h-10" />
+  </div>
+  <div className="w-10 h-10 rounded-full flex items-center justify-center  transition-colors cursor-pointer">
+    <Image src={image3} alt="Twitter" className="w-10 h-10" />
+  </div>
+  <div className="w-10 h-10  rounded-full flex items-center justify-center  transition-colors cursor-pointer">
+    <Image src={image4} alt="YouTube" className="w-10 h-10" />
+  </div>
+  <div className="w-10 h-10  rounded-full flex items-center justify-center  transition-colors cursor-pointer">
+    <Image src={image5} alt="LinkedIn" className="w-10 h-10" />
+  </div>
+</div>
+
           </div>
 
           {/* Company Links */}
