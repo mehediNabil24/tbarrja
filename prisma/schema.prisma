@@ -86,11 +86,14 @@ model FAQ {
 }
 
 model Setting {
-  id                String @id @default(auto()) @map("_id") @db.ObjectId
-  settingId         String @unique @default("SINGLE_SETTINGS_RECORD")
-  privacyPolicy     String @default("")
-  termsAndCondition String @default("")
+  id                String   @id @default(auto()) @map("_id") @db.ObjectId
+  settingId         String   @unique @default("SINGLE_SETTINGS_RECORD")
+  privacyPolicy     String   @default("")
+  termsAndCondition String   @default("")
+  socialLinks       Json?
+  investorLogin     String   @default("") // camelCase in Zod
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  @@map("settings")
 }

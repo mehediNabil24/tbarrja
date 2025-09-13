@@ -60,10 +60,18 @@ export const faqSchema = z.object({
 
 export type FAQInput = z.infer<typeof faqSchema>;
 
-// Setting Schema
 export const settingSchema = z.object({
 	privacyPolicy: z.string().optional(),
 	termsAndCondition: z.string().optional(),
+	socialLinks: z
+		.array(
+			z.object({
+				name: z.string(),
+				link: z.string().url(), // stricter validation
+			})
+		)
+		.default([]),
+	investorLogin: z.string().default(""),
 });
 
 export type SettingInput = z.infer<typeof settingSchema>;
